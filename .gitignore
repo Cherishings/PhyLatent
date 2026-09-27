@@ -6,8 +6,8 @@ build/
 dist/
 .venv/
 .env*
-data/
-outputs/
+/data/
+/outputs/
 *.log
 
 # Preserve the four intentionally bundled inference weights.
