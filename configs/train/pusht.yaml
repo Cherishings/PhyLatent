@@ -1,0 +1,27 @@
+defaults:
+  - base
+  - override data: pusht
+  - _self_
+
+task: pusht
+
+trainer:
+  limit_train_batches: 10000
+loss:
+  state:
+    key: state
+    weight: 0.15
+  align:
+    weight: 0.06
+  invariance:
+    weight: 0.025
+    brightness: 0.03
+    channel_jitter: 0.02
+  action_separation:
+    weight: 0.018
+    margin_scale: 0.08
+    max_gap: 1.0
+    noise_std: 0.08
+  diffusion:
+    weight: 0.008
+    noise_max: 0.30

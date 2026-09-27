@@ -1,0 +1,2 @@
+# Choose a compatible CUDA/CPU torch build before installation.
+-e .[runtime]

@@ -1,0 +1,19 @@
+defaults:
+  - base
+  - override data: cube
+  - _self_
+
+task: cube
+
+trainer:
+  accumulate_grad_batches: 4
+loss:
+  action_separation:
+    weight: 0.02
+    margin_scale: 0.08
+    max_gap: 1.0
+    noise_std: 0.10
+  diffusion:
+    weight: 0.01
+    noise_min: 0.03
+    noise_max: 0.35

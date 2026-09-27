@@ -1,0 +1,2 @@
+name: wo_counterfactual_group
+disable: ["action_separation", "diffusion"]

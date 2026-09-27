@@ -1,0 +1,81 @@
+defaults:
+  - model: jepa
+  - data: cube
+  - ablation: full
+  - _self_
+
+task: cube
+output_model_name: phylatent_${task}_${ablation.name}
+data_root: ${oc.env:PHYLatent_DATA_ROOT,./data}
+output_dir: outputs/${task}/${ablation.name}/seed_${seed}
+
+hydra:
+  run:
+    dir: outputs/hydra/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  job:
+    chdir: false
+
+wandb:
+  enabled: false
+  config:
+    project: PhyLatent
+
+num_workers: 6
+train_split: 0.9
+seed: 3072
+img_size: 224
+embed_dim: 192
+history_size: 3
+
+trainer:
+  max_epochs: 10
+  devices: 1
+  accelerator: gpu
+  precision: bf16
+  gradient_clip_val: 1.0
+
+loader:
+  batch_size: 32
+  num_workers: ${num_workers}
+  persistent_workers: True
+  prefetch_factor: 3
+  pin_memory: True
+
+optimizer:
+  type: AdamW
+  lr: 5e-5
+  weight_decay: 1e-3
+
+num_preds: 1
+clip_length: 4
+
+loss:
+  sigreg:
+    weight: 0.09
+    kwargs:
+      knots: 17
+      num_proj: 1024
+  state:
+    weight: 0.25
+    key: observation
+  align:
+    weight: 0.10
+  invariance:
+    weight: 0.05
+    brightness: 0.04
+    channel_jitter: 0.03
+  action_separation:
+    weight: 0.05
+    margin_scale: 0.12
+    max_gap: 1.5
+    noise_std: 0.15
+  diffusion:
+    weight: 0.03
+    noise_min: 0.05
+    noise_max: 0.50
+
+method:
+  align_dim: 128
+  state_hidden_dim: 512
+  denoise_hidden_dim: 768
+  attention_heads: 4

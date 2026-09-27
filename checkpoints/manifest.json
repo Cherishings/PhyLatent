@@ -1,0 +1,29 @@
+{
+  "config_origin": "Architecture template checked against each state dictionary with strict loading; not original training metadata.",
+  "models": {
+    "cube": {
+      "directory": "checkpoints/cube",
+      "weights_sha256": "ec44f6a7b3323c385ec26195592a76214f7e9f7a91f4f6c1809da1414fff7139",
+      "bytes": 72299966,
+      "matches_final_model_manifest": true
+    },
+    "tworoom": {
+      "directory": "checkpoints/tworoom",
+      "weights_sha256": "040e4370d36ca55eb0d9a0085e96d3a440b14885b3f977e2618549e36b191d9d",
+      "bytes": 72299081,
+      "matches_final_model_manifest": true
+    },
+    "reacher": {
+      "directory": "checkpoints/reacher",
+      "weights_sha256": "41cfddf6f3dd6cd3134886b3919c02ee5562603436de9ee04d36bde72807bc8d",
+      "bytes": 72299081,
+      "matches_final_model_manifest": true
+    },
+    "pusht": {
+      "directory": "checkpoints/pusht",
+      "weights_sha256": "bdc8d17f6a57fee71c0489aa6a9a193b972c8423958f645712a29e220a810f61",
+      "bytes": 72299081,
+      "matches_final_model_manifest": true
+    }
+  }
+}

@@ -1,0 +1,27 @@
+defaults:
+  - base
+  - override data: reacher
+  - _self_
+
+task: reacher
+
+trainer:
+  limit_train_batches: 10000
+loss:
+  state:
+    key: observation
+    weight: 0.045
+  align:
+    weight: 0.025
+  invariance:
+    weight: 0.003
+    brightness: 0.012
+    channel_jitter: 0.008
+  action_separation:
+    weight: 0.0015
+    margin_scale: 0.025
+    max_gap: 0.35
+    noise_std: 0.025
+  diffusion:
+    weight: 0.0005
+    noise_max: 0.10

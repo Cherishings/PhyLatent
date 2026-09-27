@@ -1,0 +1,75 @@
+{
+  "date": "2026-09-27",
+  "scope": "Base method, from-scratch task recipes and ablations; no fine-tuning branches.",
+  "sources": [
+    {
+      "path": "experiments/method_latentalign_jepa_paper_aligned_v1/train_latentalign.py",
+      "sha256": "abff329fae16343e9457ef9313caa454ade7bc638b5f9bd79fef79cb4c6057ee"
+    },
+    {
+      "path": "experiments/method_latentalign_jepa_paper_aligned_v1/utils.py",
+      "sha256": "b3e5cfce6d0eecd9510f06a7adc178edde86074e1474b899ff739ed8a5355b08"
+    },
+    {
+      "path": "experiments/method_latentalign_jepa_paper_aligned_v1/config/train/model/lewm.yaml",
+      "sha256": "7be97eaa2c83f809b9ea7a6da5a7d3f3c70502c27537383f54db32335e21e42b"
+    },
+    {
+      "path": "experiments/method_latentalign_jepa_paper_aligned_v1/config/train/latentalign.yaml",
+      "sha256": "3cf874c0955c3ca42dc671427990e1ea2dd03d05212ec7c4d102c9b491ccf141"
+    },
+    {
+      "path": "experiments/method_latentalign_jepa_paper_aligned_v1/config/train/latentalign_best.yaml",
+      "sha256": "01f086a2da31d6a040678ea30f7e2d993f4f807817873b5be7e9b3d1e0dab950"
+    },
+    {
+      "path": "le-wm-main/jepa.py",
+      "sha256": "41bad7fd21e0f14aea4c9c3d39a9c87037e787746d953ab62cdc0677e938ce96"
+    },
+    {
+      "path": "le-wm-main/module.py",
+      "sha256": "0b258a9e8dc24c29fcb1e8c50a09ec78b8ea85aeb79e21dd8adf712396646620"
+    },
+    {
+      "path": "experiments/phylatent_official_cem_eval_v1/eval_one.py",
+      "sha256": "d0deaf1b52201e87fb062b0cb837e1118ef8dca339844d87a5249dea5b86dec5"
+    },
+    {
+      "path": "experiments/collapse_protocol_v2/evaluate_task.py",
+      "sha256": "d0153e7d5bc96737485ea461ca47226472e6beec8e2b681a4701c2e0fd7c5041"
+    },
+    {
+      "path": "experiments/collapse_protocol_v2/metric_core.py",
+      "sha256": "1514e109d3293f73877c0772a274065133e2f6b01587754099d7eee152f72122"
+    },
+    {
+      "path": "experiments/counterfactual_ordering_v3/ordering_metric_core.py",
+      "sha256": "52d67daac05816fa05699b7f1e371c15787691cd29a365d33238cdeb44b04352"
+    },
+    {
+      "path": "experiments/external_subjepa_smwm_v1/eval_subjepa_unified.py",
+      "sha256": "8f94c759b4ef492f220e3ca3d7cc1b28463b03b87df64ceeafc923b60c8a6d2e"
+    },
+    {
+      "path": "experiments/method_phylatent_tworoom_v1/run_train_tworoom_tuned_10x10000.sh",
+      "sha256": "3f4df1716fb1ca9bb1a0738099e4a3726a89cccd18924e04420928502438d604"
+    },
+    {
+      "path": "experiments/method_phylatent_reacher_v1/run_train_reacher_tuned_v3_10x10000.sh",
+      "sha256": "e45103042019adc12995cd0ac3b69645909b6a5d6d0f3785711090cbd8cb0d58"
+    },
+    {
+      "path": "experiments/method_phylatent_pusht_v1/run_train_pusht_tuned_v2_10x10000.sh",
+      "sha256": "a07de843ec320dcdfdf207e6eaf754588b2931c576394a9e5adc45199fb1f12b"
+    },
+    {
+      "path": "experiments/method_latentalign_jepa_paper_aligned_v1/run_train_cube_best_effective_bs128_10epoch.sh",
+      "sha256": "c75e69befbaf800fa36303888ec5f1d5afddf5327fc34cc7dd4ab0f64f10cf9c"
+    }
+  ],
+  "notes": [
+    "Only task/environment/preprocessing helpers were extracted from the shared evaluator; no baseline model implementation or weights are bundled.",
+    "Base loss equations and detach/sampling semantics are preserved. Gradient-probe instrumentation, implicit resume, and server paths are removed.",
+    "New entry points explicitly seed initialization and export namespace-portable model configurations."
+  ]
+}

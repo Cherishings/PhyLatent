@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+.env*
+data/
+outputs/
+*.log
+
+# Preserve the four intentionally bundled inference weights.
+!checkpoints/*/weights.pt

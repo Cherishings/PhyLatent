@@ -1,0 +1,2 @@
+name: wo_physical_group
+disable: ["state", "align"]

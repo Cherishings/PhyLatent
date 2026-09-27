@@ -1,0 +1,27 @@
+defaults:
+  - base
+  - override data: tworoom
+  - _self_
+
+task: tworoom
+
+trainer:
+  limit_train_batches: 10000
+loss:
+  state:
+    key: proprio
+    weight: 0.20
+  align:
+    weight: 0.08
+  invariance:
+    weight: 0.03
+    brightness: 0.03
+    channel_jitter: 0.02
+  action_separation:
+    weight: 0.02
+    margin_scale: 0.08
+    max_gap: 1.0
+    noise_std: 0.10
+  diffusion:
+    weight: 0.01
+    noise_max: 0.35
