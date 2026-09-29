@@ -42,35 +42,35 @@
       "bytes": 2369
     },
     "nav_code_en.svg": {
-      "sha256": "e08330d975a9557d5e8c49b8cad43a6d4de2c020ef944e9312f01fcd05784c9c",
+      "sha256": "9650ca66d5b883d2201bcf82e0408080ece0fe79e317a0850bd927a3cc6d05f5",
       "bytes": 567
     },
     "nav_code_zh.svg": {
-      "sha256": "35f2667997246ed814db4c8082031f52eb73f3872163a1c85af8d4e3c4340669",
+      "sha256": "5dc22d33c1026d959b609864552dbb318033f079c84bbcd87b56948140148eae",
       "bytes": 571
     },
     "nav_models_en.svg": {
-      "sha256": "1e9f7ec825ac3b9b384cb11002671f090443f3e2ce96e7d7a3626a83091b7a77",
+      "sha256": "0cd2a34e2df22435afe56b4fecb9cb93c92fd478f22ffd053d60a1f6790d190c",
       "bytes": 586
     },
     "nav_models_zh.svg": {
-      "sha256": "7e70cbb629e3b5b7a7473c4ea486383e3da15415260282820b1f7d1b2119f371",
+      "sha256": "16347e8cfa1fe818b178dc7e8f1d67e04abab6d5f8620cdf1a59a8345ab2e2f3",
       "bytes": 586
     },
     "nav_paper_en.svg": {
-      "sha256": "50c6b87681c8d5ca2b5dbdf7a3f317845c520f8595c20d6ba1a8dddb4dca01b0",
+      "sha256": "56b0137bfbd99ebab2b575a2917443e4d019ad41c5b1aaf335f038232b0d16a7",
       "bytes": 585
     },
     "nav_paper_zh.svg": {
-      "sha256": "7eec46b8217adbb628bd79a4dd2a84af5ee02fa75c49f123d743b60296ff8cf8",
+      "sha256": "de1f614eb07e1ad729b3760d02f04704c19a92b76c4ffc6c3fd7f0ab47da9601",
       "bytes": 587
     },
     "nav_videos_en.svg": {
-      "sha256": "09aa311b9ea94d85ec6018b890933678f014004b8beb1e33a586243fd1a8eaaf",
+      "sha256": "1278398b97da58003e39bcdefddb2cb586b769c03694584fbc57db89a4025480",
       "bytes": 597
     },
     "nav_videos_zh.svg": {
-      "sha256": "f00c8539d240846ecc1a0fc70649d8a8c9e803656a454f1fce782d5668c57d24",
+      "sha256": "1d76d0034f2906ba9f4cdd46cb3d94ce8812742901308d5ee941ee96422987f6",
       "bytes": 597
     },
     "section_demonstrations.svg": {

@@ -5,11 +5,11 @@
   </picture>
 </p>
 
-<p align="center">
+<div align="center">
   <a href="https://arxiv.org/pdf/2608.05720"><img src="assets/readme/nav_paper_en.svg" alt="Paper" width="84"></a><a href="src/phylatent/"><img src="assets/readme/nav_code_en.svg" alt="Code" width="84"></a><a href="checkpoints/"><img src="assets/readme/nav_models_en.svg" alt="Models" width="84"></a><a href="docs/videos.md"><img src="assets/readme/nav_videos_en.svg" alt="Videos" width="84"></a>
   <br>
-  <sub><a href="README.md">English</a> &nbsp; / &nbsp; <a href="README.zh-CN.md">简体中文</a></sub>
-</p>
+  <sup><a href="README.md">English</a> &nbsp; / &nbsp; <a href="README.zh-CN.md">简体中文</a></sup>
+</div>
 
 PhyLatent improves the latent state space of JEPA world models for model predictive control (MPC).
 We introduce diagnostics for three forms of collapse and design training objectives that preserve
@@ -23,13 +23,12 @@ collapse for improving JEPA-based planning.
   </picture>
   <br>
   <sub>Mean planning success reported in the paper</sub>
+  <br>
+  <a href="#method">Method</a> &nbsp; · &nbsp; <a href="#diagnostics">Diagnostics</a> &nbsp; · &nbsp; <a href="#experiments">Experiments</a> &nbsp; · &nbsp; <a href="#demonstrations">Demos</a> &nbsp; · &nbsp; <a href="#installation">Setup</a>
 </p>
 
-<p align="center"><sub><a href="#method">Method</a> &nbsp; · &nbsp; <a href="#diagnostics">Diagnostics</a> &nbsp; · &nbsp; <a href="#experiments">Experiments</a> &nbsp; · &nbsp; <a href="#demonstrations">Demos</a> &nbsp; · &nbsp; <a href="#installation">Setup</a></sub></p>
 
-<a id="method"></a>
-
-## <img src="assets/readme/section_method.svg" width="28" alt=""> Method overview
+## <a id="method"></a><img src="assets/readme/section_method.svg" width="28" alt=""> Method overview
 
 ![PhyLatent architecture — Figure 3](assets/figures/architecture.png)
 
@@ -50,9 +49,7 @@ auxiliary training heads are not needed for planning.
 Implementation: [backbone](src/phylatent/models/jepa.py), [auxiliary heads](src/phylatent/models/heads.py),
 [losses](src/phylatent/losses.py), [training](src/phylatent/training.py), and [planning](src/phylatent/evaluation/planning.py).
 
-<a id="diagnostics"></a>
-
-## <img src="assets/readme/section_diagnostics.svg" width="28" alt=""> Diagnosing collapse in the latent state space
+## <a id="diagnostics"></a><img src="assets/readme/section_diagnostics.svg" width="28" alt=""> Diagnosing collapse in the latent state space
 
 We introduce three diagnostics to assess whether the latent state space preserves the physical
 relationships needed for planning. The formal definitions and equations are provided in the [paper](https://arxiv.org/pdf/2608.05720).
@@ -77,9 +74,7 @@ results support improving latent structure as a way to strengthen JEPA world mod
 The video illustrates the three diagnostic failures and shows LeWM / PhyLatent execution side by side.
 More observation examples are in the [visual guide](docs/visualizations.md).
 
-<a id="experiments"></a>
-
-## <img src="assets/readme/section_experiments.svg" width="28" alt=""> Experiments
+## <a id="experiments"></a><img src="assets/readme/section_experiments.svg" width="28" alt=""> Experiments
 
 ### Planning across four tasks
 
@@ -99,17 +94,8 @@ Collapse rates decrease across the four tasks; the counterfactual change on Reac
 
 <sub>Table 2 · Lower is better. Inv.: invariance; Dist.: distinguishability; CF-H5: counterfactual dynamics at the planning horizon of five blocks.</sub>
 
-### Pathway and component ablations
-
-Removing Physical Grounding reduces Cube success from **81.67% to 76.50%**.
-The objectives act jointly: improving one diagnostic alone does not guarantee better planning.
-
-[![Table 4. Cube pathway and component ablations](assets/results/cube_ablations.png)](https://arxiv.org/pdf/2608.05720#page=8)
-
-<sub>Table 4 · Each non-Full column removes the named component or group. CF uses a common comparison set across ablations, different from Table 2.</sub>
-
 <details>
-<summary><strong>More experiments · robustness, goal separation and full ablations</strong></summary>
+<summary><strong>More experiments · robustness, goal separation and supervision</strong></summary>
 
 ### Visual robustness
 
@@ -129,17 +115,11 @@ success rises from **26.67% to 60.00%**.
 
 [![Table 3. Privileged-state supervision and auxiliary-weight controls](assets/results/supervision_controls.png)](https://arxiv.org/pdf/2608.05720#page=8)
 
-### Complete four-task ablations
-
-[![Table A16. Full pathway and component ablations](assets/results/all_task_ablations.png)](https://arxiv.org/pdf/2608.05720#page=26)
-
 </details>
 
 All tables and plots above are taken directly from the [paper](https://arxiv.org/pdf/2608.05720).
 
-<a id="demonstrations"></a>
-
-## <img src="assets/readme/section_demonstrations.svg" width="28" alt=""> Task demonstrations
+## <a id="demonstrations"></a><img src="assets/readme/section_demonstrations.svg" width="28" alt=""> Task demonstrations
 
 [![Four complete task demonstrations](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4?raw=true)
 
@@ -151,9 +131,7 @@ All tables and plots above are taken directly from the [paper](https://arxiv.org
 
 Complete successful rollouts with the target visible throughout. See the [video directory](docs/videos.md).
 
-<a id="installation"></a>
-
-## <img src="assets/readme/section_quickstart.svg" width="28" alt=""> Getting started
+## <a id="installation"></a><img src="assets/readme/section_quickstart.svg" width="28" alt=""> Getting started
 
 ### Installation
 

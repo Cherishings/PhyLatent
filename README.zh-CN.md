@@ -5,11 +5,11 @@
   </picture>
 </p>
 
-<p align="center">
+<div align="center">
   <a href="https://arxiv.org/pdf/2608.05720"><img src="assets/readme/nav_paper_zh.svg" alt="论文" width="84"></a><a href="src/phylatent/"><img src="assets/readme/nav_code_zh.svg" alt="代码" width="84"></a><a href="checkpoints/"><img src="assets/readme/nav_models_zh.svg" alt="模型" width="84"></a><a href="docs/videos.md"><img src="assets/readme/nav_videos_zh.svg" alt="视频" width="84"></a>
   <br>
-  <sub><a href="README.md">English</a> &nbsp; / &nbsp; <a href="README.zh-CN.md">简体中文</a></sub>
-</p>
+  <sup><a href="README.md">English</a> &nbsp; / &nbsp; <a href="README.zh-CN.md">简体中文</a></sup>
+</div>
 
 PhyLatent 通过改善 JEPA 世界模型的潜在状态空间，提升模型预测控制（MPC）的规划能力。
 我们提出三类坍缩的诊断方法，并设计训练目标，让模型内部的表示更好地保持物理关系。
@@ -22,13 +22,12 @@ PhyLatent 通过改善 JEPA 世界模型的潜在状态空间，提升模型预�
   </picture>
   <br>
   <sub>论文报告的平均任务成功率</sub>
+  <br>
+  <a href="#method">方法结构</a> &nbsp; · &nbsp; <a href="#diagnostics">坍缩诊断</a> &nbsp; · &nbsp; <a href="#experiments">实验结果</a> &nbsp; · &nbsp; <a href="#demonstrations">任务演示</a> &nbsp; · &nbsp; <a href="#installation">快速开始</a>
 </p>
 
-<p align="center"><sub><a href="#method">方法结构</a> &nbsp; · &nbsp; <a href="#diagnostics">坍缩诊断</a> &nbsp; · &nbsp; <a href="#experiments">实验结果</a> &nbsp; · &nbsp; <a href="#demonstrations">任务演示</a> &nbsp; · &nbsp; <a href="#installation">快速开始</a></sub></p>
 
-<a id="method"></a>
-
-## <img src="assets/readme/section_method.svg" width="28" alt=""> 方法结构
+## <a id="method"></a><img src="assets/readme/section_method.svg" width="28" alt=""> 方法结构
 
 ![PhyLatent 方法结构：论文 Figure 3](assets/figures/architecture.png)
 
@@ -47,9 +46,7 @@ PhyLatent 的各项设计都围绕改善状态空间展开，进而提高规划�
 代码对应：[模型主干](src/phylatent/models/jepa.py)、[辅助头](src/phylatent/models/heads.py)、
 [损失函数](src/phylatent/losses.py)、[训练](src/phylatent/training.py)和[规划](src/phylatent/evaluation/planning.py)。
 
-<a id="diagnostics"></a>
-
-## <img src="assets/readme/section_diagnostics.svg" width="28" alt=""> 潜在状态空间的坍缩诊断
+## <a id="diagnostics"></a><img src="assets/readme/section_diagnostics.svg" width="28" alt=""> 潜在状态空间的坍缩诊断
 
 我们提出三类诊断，检查潜在状态空间是否保持了规划所需的物理关系。具体定义与公式见[论文](https://arxiv.org/pdf/2608.05720)。
 
@@ -72,9 +69,7 @@ PhyLatent 的各项设计都围绕改善状态空间展开，进而提高规划�
 视频展示三类诊断错误，并呈现 LeWM 与 PhyLatent 的并排执行过程。
 更多真实观测示例见[可视化说明](docs/visualizations.zh-CN.md)。
 
-<a id="experiments"></a>
-
-## <img src="assets/readme/section_experiments.svg" width="28" alt=""> 实验结果
+## <a id="experiments"></a><img src="assets/readme/section_experiments.svg" width="28" alt=""> 实验结果
 
 ### 四任务规划表现
 
@@ -94,17 +89,8 @@ Cube 和 TwoRooms 的提升最明显，Reacher 基本持平。
 
 <sub>Table 2 · 数值越低越好。Inv.：不变性；Dist.：可区分性；CF-H5：与规划一致的五个动作块时域下的反事实动力学。</sub>
 
-### 路径与组件消融
-
-移除物理约束路径后，Cube 成功率从 **81.67% 降至 76.50%**。
-各项训练目标共同作用；单个诊断指标变好，并不一定意味着规划也变好。
-
-[![表 4：Cube 路径与组件消融](assets/results/cube_ablations.png)](https://arxiv.org/pdf/2608.05720#page=8)
-
-<sub>Table 4 · Full 以外各列表示移除对应组件或整条路径。反事实指标使用消融组共同的比较集合，统计范围与 Table 2 不同。</sub>
-
 <details>
-<summary><strong>展开更多实验：视觉鲁棒性、目标距离与完整消融</strong></summary>
+<summary><strong>展开更多实验：视觉鲁棒性、目标距离与监督对照</strong></summary>
 
 ### 视觉鲁棒性
 
@@ -124,17 +110,11 @@ Cube 和 TwoRooms 的提升最明显，Reacher 基本持平。
 
 [![表 3：物理状态监督与辅助损失权重对照](assets/results/supervision_controls.png)](https://arxiv.org/pdf/2608.05720#page=8)
 
-### 四任务完整消融
-
-[![表 A16：四任务完整路径与组件消融](assets/results/all_task_ablations.png)](https://arxiv.org/pdf/2608.05720#page=26)
-
 </details>
 
 以上表格与实验图均直接取自[论文](https://arxiv.org/pdf/2608.05720)。
 
-<a id="demonstrations"></a>
-
-## <img src="assets/readme/section_demonstrations.svg" width="28" alt=""> 四任务完整演示
+## <a id="demonstrations"></a><img src="assets/readme/section_demonstrations.svg" width="28" alt=""> 四任务完整演示
 
 [![四任务执行预览](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4?raw=true)
 
@@ -146,9 +126,7 @@ Cube 和 TwoRooms 的提升最明显，Reacher 基本持平。
 
 完整展示各任务的成功执行过程，画面全程保留目标。更多视频见[视频目录](docs/videos.md)。
 
-<a id="installation"></a>
-
-## <img src="assets/readme/section_quickstart.svg" width="28" alt=""> 快速开始
+## <a id="installation"></a><img src="assets/readme/section_quickstart.svg" width="28" alt=""> 快速开始
 
 ### 安装
 
