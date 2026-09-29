@@ -12,7 +12,7 @@ Repeated encoders and predictors share parameters. `sg` denotes stop-gradient.
 ## Collapse diagnostics
 
 We introduce three diagnostics for the physical relationships needed by latent-space planning.
-The paper provides their formal definitions and equations. The scatter plot applies these diagnostics
+The [paper](https://arxiv.org/pdf/2608.05720) provides their formal definitions and equations. The scatter plot applies these diagnostics
 to the **LeWM reference model on Cube**.
 Red points mark errors, other colors mark preserved order, and the planes mark the boundaries between them.
 

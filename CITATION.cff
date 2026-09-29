@@ -4,5 +4,24 @@ title: "PhyLatent: method implementation and evaluation"
 type: software
 version: 0.1.0
 license: MIT
+repository-code: "https://github.com/Cherishings/PhyLatent"
 authors:
   - name: "PhyLatent contributors"
+preferred-citation:
+  type: article
+  title: "PhyLatent: Learning Dynamics-Relevant Representations for JEPA World Models"
+  authors:
+    - family-names: "Zeng"
+      given-names: "Xi"
+    - family-names: "Ren"
+      given-names: "Haojie"
+    - family-names: "Song"
+      given-names: "Ziying"
+    - family-names: "Nie"
+      given-names: "Yuanbo"
+    - family-names: "Drummond"
+      given-names: "Ross"
+  year: 2026
+  journal: "arXiv"
+  doi: "10.48550/arXiv.2608.05720"
+  url: "https://arxiv.org/abs/2608.05720"

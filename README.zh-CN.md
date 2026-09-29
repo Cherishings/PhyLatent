@@ -1,14 +1,32 @@
-# PhyLatent
+<p align="center">
+  <picture>
+    <source media="(max-width: 640px)" srcset="assets/readme/hero_zh_mobile.svg">
+    <img src="assets/readme/hero_zh.svg" alt="PhyLatent — 让潜在状态空间保持物理结构" width="1000">
+  </picture>
+</p>
 
-[English](README.md)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720"><img src="assets/readme/nav_paper_zh.svg" alt="论文" width="112"></a>&nbsp;<a href="src/phylatent/"><img src="assets/readme/nav_code_zh.svg" alt="代码" width="112"></a>
+  <br>
+  <a href="checkpoints/"><img src="assets/readme/nav_models_zh.svg" alt="模型" width="112"></a>&nbsp;<a href="docs/videos.md"><img src="assets/readme/nav_videos_zh.svg" alt="视频" width="112"></a>
+</p>
+
+<p align="center">
+  <a href="README.md">English</a> &nbsp; / &nbsp; <a href="README.zh-CN.md">简体中文</a>
+</p>
 
 PhyLatent 通过改善 JEPA 世界模型的潜在状态空间，提升模型预测控制（MPC）的规划能力。
 我们提出三类坍缩的诊断方法，并设计训练目标，让模型内部的表示更好地保持物理关系。
 实验结果支持：减少内部结构的坍缩，有助于提升 JEPA 的规划能力。
 
-论文中的平均任务成功率：
-
-**Cube 81.67%** · **TwoRooms 96.83%** · **Reacher 82.17%** · **PushT 85.50%**
+<p align="center">
+  <picture>
+    <source media="(max-width: 640px)" srcset="assets/readme/success_zh_mobile.svg">
+    <img src="assets/readme/success_zh.svg" alt="Cube 81.67% · TwoRooms 96.83% · Reacher 82.17% · PushT 85.50%" width="1000">
+  </picture>
+  <br>
+  <sub>论文报告的平均任务成功率</sub>
+</p>
 
 ## 方法结构
 
@@ -31,7 +49,7 @@ PhyLatent 的各项设计都围绕改善状态空间展开，进而提高规划�
 
 ## 潜在状态空间的坍缩诊断
 
-我们提出三类诊断，检查潜在状态空间是否保持了规划所需的物理关系。具体定义与公式见论文。
+我们提出三类诊断，检查潜在状态空间是否保持了规划所需的物理关系。具体定义与公式见[论文](https://arxiv.org/pdf/2608.05720)。
 
 ![不变性、可区分性与反事实动力学的三类坍缩诊断](assets/figures/collapse_diagnostics.png)
 
@@ -46,7 +64,7 @@ PhyLatent 的各项设计都围绕改善状态空间展开，进而提高规划�
 
 ### 诊断可视化
 
-[![Cube 坍缩诊断](assets/previews/cube_cases_cover_zh.png)](assets/videos/cube_three_cases_zh.mp4?raw=true)
+[![Cube 坍缩诊断](assets/readme/cube_cover_zh.svg)](assets/videos/cube_three_cases_zh.mp4?raw=true)
 
 [下载 Cube 坍缩诊断视频 MP4](assets/videos/cube_three_cases_zh.mp4?raw=true)。
 视频展示三类诊断错误，并呈现 LeWM 与 PhyLatent 的并排执行过程。
@@ -58,10 +76,9 @@ PhyLatent 的各项设计都围绕改善状态空间展开，进而提高规划�
 
 [下载四任务合集 MP4](assets/videos/four_tasks_overview.mp4?raw=true)，或下载各任务的完整视频：
 
-- [Cube](assets/videos/cube_full_zh.mp4?raw=true)
-- [TwoRooms](assets/videos/tworoom_full_zh.mp4?raw=true)
-- [Reacher](assets/videos/reacher_full_zh.mp4?raw=true)
-- [PushT](assets/videos/pusht_full_zh.mp4?raw=true)
+<p align="center">
+  <a href="assets/videos/cube_full_zh.mp4?raw=true">Cube</a> &nbsp; · &nbsp; <a href="assets/videos/tworoom_full_zh.mp4?raw=true">TwoRooms</a> &nbsp; · &nbsp; <a href="assets/videos/reacher_full_zh.mp4?raw=true">Reacher</a> &nbsp; · &nbsp; <a href="assets/videos/pusht_full_zh.mp4?raw=true">PushT</a>
+</p>
 
 完整展示各任务的成功执行过程，画面全程保留目标。更多视频见[视频目录](docs/videos.md)。
 
@@ -149,7 +166,7 @@ python scripts/diagnose.py --task cube --model-dir checkpoints/cube \
 ## 目录结构
 
 ```text
-assets/figures/       论文结构图与实测诊断图
+assets/              论文插图、首页视觉素材与演示视频
 configs/train/       四任务基础配方与组件/分组消融
 src/phylatent/       模型、辅助损失、预处理和训练
   evaluation/        闭环 CEM 规划评估
@@ -165,4 +182,19 @@ tests/               损失、配置和指标的 CPU 检查
 
 代码采用 [MIT](LICENSE)，保留 [LeWorldModel 等必要来源声明](THIRD_PARTY_NOTICES.md)。
 数据与外部依赖各自遵循其许可证。使用本方法请引用 PhyLatent 论文；
-软件引用信息见 `CITATION.cff`。
+引用信息见 [CITATION.cff](CITATION.cff)。
+
+[论文 PDF](https://arxiv.org/pdf/2608.05720) · [arXiv 摘要页](https://arxiv.org/abs/2608.05720)
+
+```bibtex
+@misc{zeng2026phylatent,
+  title         = {PhyLatent: Learning Dynamics-Relevant Representations for JEPA World Models},
+  author        = {Xi Zeng and Haojie Ren and Ziying Song and Yuanbo Nie and Ross Drummond},
+  year          = {2026},
+  eprint        = {2608.05720},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  doi           = {10.48550/arXiv.2608.05720},
+  url           = {https://arxiv.org/abs/2608.05720}
+}
+```

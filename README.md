@@ -1,15 +1,33 @@
-# PhyLatent
+<p align="center">
+  <picture>
+    <source media="(max-width: 640px)" srcset="assets/readme/hero_en_mobile.svg">
+    <img src="assets/readme/hero_en.svg" alt="PhyLatent — Physically structured latent world models" width="1000">
+  </picture>
+</p>
 
-[中文说明](README.zh-CN.md)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720"><img src="assets/readme/nav_paper_en.svg" alt="Paper" width="112"></a>&nbsp;<a href="src/phylatent/"><img src="assets/readme/nav_code_en.svg" alt="Code" width="112"></a>
+  <br>
+  <a href="checkpoints/"><img src="assets/readme/nav_models_en.svg" alt="Models" width="112"></a>&nbsp;<a href="docs/videos.md"><img src="assets/readme/nav_videos_en.svg" alt="Videos" width="112"></a>
+</p>
+
+<p align="center">
+  <a href="README.md">English</a> &nbsp; / &nbsp; <a href="README.zh-CN.md">简体中文</a>
+</p>
 
 PhyLatent improves the latent state space of JEPA world models for model predictive control (MPC).
 We introduce diagnostics for three forms of collapse and design training objectives that preserve
 physical relationships in the learned representation. Our results support the value of reducing
 collapse for improving JEPA-based planning.
 
-Planning success rates reported in the paper (means):
-
-**Cube 81.67%** · **TwoRooms 96.83%** · **Reacher 82.17%** · **PushT 85.50%**
+<p align="center">
+  <picture>
+    <source media="(max-width: 640px)" srcset="assets/readme/success_en_mobile.svg">
+    <img src="assets/readme/success_en.svg" alt="Cube 81.67% · TwoRooms 96.83% · Reacher 82.17% · PushT 85.50%" width="1000">
+  </picture>
+  <br>
+  <sub>Mean planning success reported in the paper</sub>
+</p>
 
 ## Method overview
 
@@ -35,7 +53,7 @@ Implementation: [backbone](src/phylatent/models/jepa.py), [auxiliary heads](src/
 ## Diagnosing collapse in the latent state space
 
 We introduce three diagnostics to assess whether the latent state space preserves the physical
-relationships needed for planning. The formal definitions and equations are provided in the paper.
+relationships needed for planning. The formal definitions and equations are provided in the [paper](https://arxiv.org/pdf/2608.05720).
 
 ![Three forms of collapse: invariance, distinguishability and counterfactual dynamics](assets/figures/collapse_diagnostics.png)
 
@@ -51,7 +69,7 @@ results support improving latent structure as a way to strengthen JEPA world mod
 
 ### Visualizing the diagnostics
 
-[![Cube collapse diagnostics](assets/previews/cube_cases_cover.png)](assets/videos/cube_three_cases_en.mp4?raw=true)
+[![Cube collapse diagnostics](assets/readme/cube_cover_en.svg)](assets/videos/cube_three_cases_en.mp4?raw=true)
 
 [Download the Cube diagnostics video (MP4)](assets/videos/cube_three_cases_en.mp4?raw=true).
 The video illustrates the three diagnostic failures and shows LeWM / PhyLatent execution side by side.
@@ -63,10 +81,9 @@ More observation examples are in the [visual guide](docs/visualizations.md).
 
 [Download the four-task overview (MP4)](assets/videos/four_tasks_overview.mp4?raw=true), or download an individual rollout:
 
-- [Cube](assets/videos/cube_full_en.mp4?raw=true)
-- [TwoRooms](assets/videos/tworoom_full_en.mp4?raw=true)
-- [Reacher](assets/videos/reacher_full_en.mp4?raw=true)
-- [PushT](assets/videos/pusht_full_en.mp4?raw=true)
+<p align="center">
+  <a href="assets/videos/cube_full_en.mp4?raw=true">Cube</a> &nbsp; · &nbsp; <a href="assets/videos/tworoom_full_en.mp4?raw=true">TwoRooms</a> &nbsp; · &nbsp; <a href="assets/videos/reacher_full_en.mp4?raw=true">Reacher</a> &nbsp; · &nbsp; <a href="assets/videos/pusht_full_en.mp4?raw=true">PushT</a>
+</p>
 
 Complete successful rollouts with the target visible throughout. See the [video directory](docs/videos.md).
 
@@ -158,7 +175,7 @@ See [metric definitions](docs/reproducibility.md#diagnostic-metrics) for how the
 ## Repository layout
 
 ```text
-assets/figures/       Paper architecture and empirical diagnostic figures
+assets/              Paper figures, homepage graphics and video demonstrations
 configs/train/       Four base task recipes and loss/component ablations
 src/phylatent/       Models, auxiliary losses, preprocessing and training
   evaluation/        Closed-loop CEM planning
@@ -175,4 +192,19 @@ tests/               CPU checks of losses, configurations and metrics
 The code is released under [MIT](LICENSE). LeWorldModel attribution is retained
 in [third-party notices](THIRD_PARTY_NOTICES.md). Data and external dependencies
 retain their own licenses. Please cite the PhyLatent paper when using this method;
-software citation information is in `CITATION.cff`.
+citation metadata is provided in [CITATION.cff](CITATION.cff).
+
+[Paper (PDF)](https://arxiv.org/pdf/2608.05720) · [arXiv abstract](https://arxiv.org/abs/2608.05720)
+
+```bibtex
+@misc{zeng2026phylatent,
+  title         = {PhyLatent: Learning Dynamics-Relevant Representations for JEPA World Models},
+  author        = {Xi Zeng and Haojie Ren and Ziying Song and Yuanbo Nie and Ross Drummond},
+  year          = {2026},
+  eprint        = {2608.05720},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  doi           = {10.48550/arXiv.2608.05720},
+  url           = {https://arxiv.org/abs/2608.05720}
+}
+```

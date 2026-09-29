@@ -1,0 +1,77 @@
+{
+  "description": "Local SVG assets for the PhyLatent README. Success rates are paper-reported means; decorative geometry is not experimental data.",
+  "files": {
+    "cube_cover_en.svg": {
+      "sha256": "1040e56748660246b477d2525be3a5c12bbc90b5fa9403ba4462b064c4d89c05",
+      "bytes": 126065
+    },
+    "cube_cover_zh.svg": {
+      "sha256": "f73fd77f79a5ddbcbbfb4eb8a4abdfe2e60eb1b72bbe19e82cef99de6982d68a",
+      "bytes": 133320
+    },
+    "hero_en.svg": {
+      "sha256": "b1da939ee11104d98a2f6e601f3c1a0b91260deb60b67a2b08fe9ad3a01f0f5e",
+      "bytes": 2387
+    },
+    "hero_en_mobile.svg": {
+      "sha256": "37ebda092241827ef713f59481646d058408f9ad6cb102744b8009b6f4a0ae88",
+      "bytes": 2373
+    },
+    "hero_zh.svg": {
+      "sha256": "fd223533bc710a89b861fb2ab484df1255a5146bd1faf9090dbd40a0ffc45ef4",
+      "bytes": 2383
+    },
+    "hero_zh_mobile.svg": {
+      "sha256": "b0cf4f0670c1a121f5c7517d38896258a80cef0d3cd360540295159dd20dee4e",
+      "bytes": 2369
+    },
+    "nav_code_en.svg": {
+      "sha256": "9b89f6a3348e40cacc6c449a0335cac82e7b3470c7191f71c5dac10205a94d7b",
+      "bytes": 568
+    },
+    "nav_code_zh.svg": {
+      "sha256": "74db240b1db0e91b666fb975fbbccac15b244f5fc9a37e67c253e60806131095",
+      "bytes": 572
+    },
+    "nav_models_en.svg": {
+      "sha256": "640f1e250a7b81c52387c78e054b34ab2fbf4155ae95726273ae07d80d4b1064",
+      "bytes": 587
+    },
+    "nav_models_zh.svg": {
+      "sha256": "9d384981bb1e3f353c488aacd52d58340c6fba41a86fc9eee49ba4d422501e00",
+      "bytes": 587
+    },
+    "nav_paper_en.svg": {
+      "sha256": "686a1a1b7e1135285c8796deef2e26b00e99edda648514b69eb23cb17ec3a35c",
+      "bytes": 586
+    },
+    "nav_paper_zh.svg": {
+      "sha256": "eb1cf787c67b1780251c44466efa802066f03c67b00990902538490705c5bae8",
+      "bytes": 588
+    },
+    "nav_videos_en.svg": {
+      "sha256": "69bd5f7abd12c9e0ee884dcb20bb41d1eb01b425e86d7bb3e0d160cf96f5273a",
+      "bytes": 598
+    },
+    "nav_videos_zh.svg": {
+      "sha256": "32cf68fa065744f8ec5528a2f5a33d4cb461540587108d84c9cb8a2e6d83b7a1",
+      "bytes": 598
+    },
+    "success_en.svg": {
+      "sha256": "05bcc68e7df289305db762dff0a3f18f75f2becaa76b480cd4e20cf03a8ef679",
+      "bytes": 4384
+    },
+    "success_en_mobile.svg": {
+      "sha256": "2ed23b1eabaf2b0ea9d43bcb6e9ced0bdc2d58cd6815e48ab1c96fc8b430d364",
+      "bytes": 4382
+    },
+    "success_zh.svg": {
+      "sha256": "3abac1c61b29f55e59962825787c9b705f7e05d43395e894e1312fde4087a9ea",
+      "bytes": 4396
+    },
+    "success_zh_mobile.svg": {
+      "sha256": "7cb88bd44c455fcb4b79abb14e460cd0fec5d420ec59d15980bf0fa5f0773457",
+      "bytes": 4394
+    }
+  }
+}
