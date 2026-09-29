@@ -36,29 +36,24 @@ The implementation follows this split: [backbone](src/phylatent/models/jepa.py),
 
 ## Watch PhyLatent in action
 
-[![Four complete task demonstrations](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4)
+[![Four complete task demonstrations](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4?raw=true)
 
-[Watch the four-task overview](assets/videos/four_tasks_overview.mp4), or open a full individual rollout:
+[Download the four-task overview (MP4)](assets/videos/four_tasks_overview.mp4?raw=true), or download an individual rollout:
 
-- [Cube](assets/videos/cube_full_en.mp4)
-- [TwoRooms](assets/videos/tworoom_full_en.mp4)
-- [Reacher](assets/videos/reacher_full_en.mp4)
-- [PushT](assets/videos/pusht_full_en.mp4)
+- [Cube](assets/videos/cube_full_en.mp4?raw=true)
+- [TwoRooms](assets/videos/tworoom_full_en.mp4?raw=true)
+- [Reacher](assets/videos/reacher_full_en.mp4?raw=true)
+- [PushT](assets/videos/pusht_full_en.mp4?raw=true)
 
 Complete successful rollouts with the target visible throughout.
-See [video settings and provenance](docs/videos.md) for recording details.
+See [video directory](docs/videos.md).
 
-### Cube: understanding the failure and the paired execution
+### Cube collapse diagnostics
 
-[![Cube diagnostic case studies](assets/previews/cube_cases_cover.png)](assets/videos/cube_three_cases_en.mp4)
+[![Cube collapse diagnostics](assets/previews/cube_cases_cover.png)](assets/videos/cube_three_cases_en.mp4?raw=true)
 
-[Watch the three-chapter Cube video](assets/videos/cube_three_cases_en.mp4).
-It combines decision scores, real simulator endpoints, complete LeWM failure
-rollouts and matched autonomous PhyLatent executions.
-
-The distinguishability diagnosis and planning comparison use different cases.
-See [video settings and provenance](docs/videos.md) for the source recordings
-and diagnostic scope.
+[Download the Cube diagnostics video (MP4)](assets/videos/cube_three_cases_en.mp4?raw=true).
+The film shows three forms of collapse and side-by-side LeWM / PhyLatent execution.
 
 ## What do the collapse diagnostics detect?
 

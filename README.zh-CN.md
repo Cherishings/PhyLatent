@@ -29,26 +29,24 @@ latent 去噪学习潜在世界模型。本目录提供 **基础方法、从头�
 
 ## 四任务完整演示
 
-[![四任务执行预览](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4)
+[![四任务执行预览](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4?raw=true)
 
-[观看四任务合集](assets/videos/four_tasks_overview.mp4)，或分别观看完整过程：
+[下载四任务合集 MP4](assets/videos/four_tasks_overview.mp4?raw=true)，或下载各任务的完整视频：
 
-- [Cube](assets/videos/cube_full_zh.mp4)
-- [TwoRooms](assets/videos/tworoom_full_zh.mp4)
-- [Reacher](assets/videos/reacher_full_zh.mp4)
-- [PushT](assets/videos/pusht_full_zh.mp4)
+- [Cube](assets/videos/cube_full_zh.mp4?raw=true)
+- [TwoRooms](assets/videos/tworoom_full_zh.mp4?raw=true)
+- [Reacher](assets/videos/reacher_full_zh.mp4?raw=true)
+- [PushT](assets/videos/pusht_full_zh.mp4?raw=true)
 
 完整展示各任务的成功执行过程，画面全程保留目标。
-录制设置与来源见[视频说明](docs/videos.md)。
+更多视频见[视频目录](docs/videos.md)。
 
-### Cube：看清错误决策与执行对照
+### Cube 坍缩诊断
 
-[![Cube 三章案例专题](assets/previews/cube_cases_cover_zh.png)](assets/videos/cube_three_cases_zh.mp4)
+[![Cube 坍缩诊断](assets/previews/cube_cases_cover_zh.png)](assets/videos/cube_three_cases_zh.mp4?raw=true)
 
-[观看 Cube 三章专题](assets/videos/cube_three_cases_zh.mp4)。
-视频结合评分、动作分支的真实终点、LeWM 完整失败回放，以及同条件下 PhyLatent 的自主执行。
-
-可区分性的诊断与规划对照来自不同案例，来源与诊断范围见[视频说明](docs/videos.md)。
+[下载 Cube 坍缩诊断视频 MP4](assets/videos/cube_three_cases_zh.mp4?raw=true)。
+展示三类坍缩现象，以及 LeWM 与 PhyLatent 的并排执行过程。
 
 ## 三类坍缩分别在辨识什么？
 
