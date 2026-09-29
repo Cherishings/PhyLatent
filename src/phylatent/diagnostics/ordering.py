@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pure NumPy core for Counterfactual Dynamics Ordering Collapse v3."""
+"""NumPy implementation of counterfactual dynamics ordering diagnostics."""
 
 from __future__ import annotations
 

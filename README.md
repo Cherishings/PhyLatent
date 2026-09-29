@@ -2,11 +2,14 @@
 
 [中文说明](README.zh-CN.md)
 
-PhyLatent learns a latent world model with physical state grounding, future
-relation alignment, static visual invariance, counterfactual action separation,
-and latent denoising. This repository provides the **base method, from-scratch
-training and ablations, four inference checkpoints, planning evaluation, and
-final collapse diagnostics** for Cube, TwoRooms, Reacher and PushT.
+PhyLatent improves the latent state space of JEPA world models for model predictive control (MPC).
+We introduce diagnostics for three forms of collapse and design training objectives that preserve
+physical relationships in the learned representation. Our results support the value of reducing
+collapse for improving JEPA-based planning.
+
+Planning success rates reported in the paper (means):
+
+**Cube 81.67%** · **TwoRooms 96.83%** · **Reacher 82.17%** · **PushT 85.50%**
 
 ## Method overview
 
@@ -14,27 +17,47 @@ final collapse diagnostics** for Cube, TwoRooms, Reacher and PushT.
 
 *Figure 3. PhyLatent architecture. [View the vector figure](assets/figures/architecture.svg).*
 
-The observation encoder maps image histories into latent states. An action
-encoder and a shared predictor then roll these states forward under candidate
-actions. Training adds five complementary objectives in three groups:
+MPC compares candidate actions through their predicted future states. A latent space that preserves
+physical relationships makes those comparisons more reliable. PhyLatent's objectives are designed
+to improve this state space and, in turn, planning success:
 
-- **Physical invariance — SVIP:** keep representations consistent under appearance perturbations.
-- **Physical distinguishability — PSG + FRA:** ground representations in physical state and align predicted and observed future relations, including action-conditioned relations.
-- **Counterfactual dynamics — CASP + LD:** separate predictions for different actions and learn a conditional latent-denoising objective.
+- **Physical invariance — SVIP:** keep representations consistent under appearance changes.
+- **Physical distinguishability — PSG + FRA:** ground representations in physical state and align predicted and observed future relations.
+- **Counterfactual dynamics — CASP + LD:** distinguish the consequences of different actions and support prediction with conditional latent denoising.
 
-These objectives complement latent prediction and SIGReg regularization.
-At inference, the encoder and action-conditioned predictor support CEM-based
-model-predictive control: score candidate action sequences against the goal
-embedding, execute an action block, and replan from the next observation.
-Auxiliary training heads are not needed for planning.
+The observation encoder maps image histories into latent states. An action-conditioned predictor
+rolls them forward for planning. These objectives complement latent prediction and SIGReg regularization;
+auxiliary training heads are not needed for planning.
 
-The implementation follows this split: [backbone](src/phylatent/models/jepa.py),
-[auxiliary heads](src/phylatent/models/heads.py),
-[loss functions](src/phylatent/losses.py),
-[training objectives](src/phylatent/training.py), and
-[planning](src/phylatent/evaluation/planning.py).
+Implementation: [backbone](src/phylatent/models/jepa.py), [auxiliary heads](src/phylatent/models/heads.py),
+[losses](src/phylatent/losses.py), [training](src/phylatent/training.py), and [planning](src/phylatent/evaluation/planning.py).
 
-## Watch PhyLatent in action
+## Diagnosing collapse in the latent state space
+
+We introduce three diagnostics to assess whether the latent state space preserves the physical
+relationships needed for planning. The formal definitions and equations are provided in the paper.
+
+![Three forms of collapse: invariance, distinguishability and counterfactual dynamics](assets/figures/collapse_diagnostics.png)
+
+*Our diagnostics applied to LeWM on Cube. Red points mark collapse; planes mark ordering boundaries.*
+
+- **Invariance:** does changing appearance alter the model's judgment of the same physical states?
+- **Distinguishability:** does the model preserve the ordering of physically near and far states?
+- **Counterfactual dynamics:** do predictions preserve the ordering found in the observed consequences of different actions?
+
+We evaluate both task success and these properties of the internal state space. Lower collapse rates
+indicate better preservation of the corresponding relationships. Together, the planning and diagnostic
+results support improving latent structure as a way to strengthen JEPA world models for MPC.
+
+### Visualizing the diagnostics
+
+[![Cube collapse diagnostics](assets/previews/cube_cases_cover.png)](assets/videos/cube_three_cases_en.mp4?raw=true)
+
+[Download the Cube diagnostics video (MP4)](assets/videos/cube_three_cases_en.mp4?raw=true).
+The video illustrates the three diagnostic failures and shows LeWM / PhyLatent execution side by side.
+More observation examples are in the [visual guide](docs/visualizations.md).
+
+## Task demonstrations
 
 [![Four complete task demonstrations](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4?raw=true)
 
@@ -45,33 +68,7 @@ The implementation follows this split: [backbone](src/phylatent/models/jepa.py),
 - [Reacher](assets/videos/reacher_full_en.mp4?raw=true)
 - [PushT](assets/videos/pusht_full_en.mp4?raw=true)
 
-Complete successful rollouts with the target visible throughout.
-See [video directory](docs/videos.md).
-
-### Cube collapse diagnostics
-
-[![Cube collapse diagnostics](assets/previews/cube_cases_cover.png)](assets/videos/cube_three_cases_en.mp4?raw=true)
-
-[Download the Cube diagnostics video (MP4)](assets/videos/cube_three_cases_en.mp4?raw=true).
-The film shows three forms of collapse and side-by-side LeWM / PhyLatent execution.
-
-## What do the collapse diagnostics detect?
-
-![Three forms of collapse: invariance, distinguishability and counterfactual dynamics](assets/figures/collapse_diagnostics.png)
-
-*Empirical diagnostics of the LeWM reference model on Cube, illustrating the
-problem addressed by PhyLatent. Red points indicate diagnostic failures; the
-planes mark ordering boundaries. This is not a PhyLatent before/after comparison.*
-
-- **Invariance:** an appearance change reverses an otherwise correct near/far ordering.
-- **Distinguishability:** a physically farther state appears no farther away in latent space.
-- **Counterfactual dynamics:** predicted futures fail to preserve an ordering that is present in the encoded observed futures of different action branches.
-
-The figure uses INV v2, Distinguishability v2 and CF ordering-v3 (horizon 5).
-Each panel uniformly samples 2,500 eligible comparisons for display; plotted
-point counts are not aggregate failure-rate estimates.
-See [visual examples and interpretation](docs/visualizations.md) for actual
-observations, plot provenance and limits.
+Complete successful rollouts with the target visible throughout. See the [video directory](docs/videos.md).
 
 ## Installation
 
@@ -93,8 +90,7 @@ python -m unittest discover -s tests -v
 
 The runtime pins stable-pretraining 0.1.7 and stable-worldmodel 0.1.1.
 Simulator assets/system libraries must also satisfy their upstream installation
-instructions. Full runtime installation and GPU evaluation have not been
-validated during extraction; see [validation notes](docs/validation.md).
+instructions. For verification commands and supported checks, see [verification](docs/validation.md).
 
 ## Data
 
@@ -118,7 +114,7 @@ new runs; the entry point never resumes a nonempty output directory.
 
 Cube uses effective batch 128 for ten full epochs. The other base recipes use
 batch 32 and at most 10,000 training batches per epoch for ten epochs.
-These are base recipes, not a claim to regenerate every bundled paper checkpoint.
+For training details and checkpoint reproducibility, see [training and evaluation notes](docs/reproducibility.md).
 
 ## Ablations
 
@@ -131,8 +127,7 @@ python scripts/train.py --config-name pusht ablation=wo_counterfactual_group dat
 
 Available choices: `full`, `wo_psg`, `wo_fra`, `wo_svip`, `wo_casp`, `wo_ld`,
 `wo_physical_group`, `wo_invariance_group`, `wo_counterfactual_group`.
-Group/component meanings and evaluation denominators are described in
-[reproducibility notes](docs/reproducibility.md).
+See [training and evaluation notes](docs/reproducibility.md) for the loss groups and diagnostic metrics.
 
 ## Pretrained checkpoints and planning
 
@@ -155,11 +150,10 @@ python scripts/diagnose.py --task cube --model-dir checkpoints/cube \
   --data-root /path/to/data --output outputs/diagnostics/cube
 ```
 
-This reports invariance, distinguishability and **CF ordering-v3**; no legacy
-ratio-threshold CF score is used. Add `--smoke` for a small sampling check.
-An optional `--reference-dir` runs a paired common-eligibility comparison using
-an externally obtained compatible JEPA checkpoint. No baseline source or
-baseline weights are bundled. Standalone CF scores have their own denominators.
+This reports invariance, distinguishability and counterfactual dynamics diagnostics.
+Use `--smoke` for a small trial run. To compare with a reference model, pass its
+compatible JEPA checkpoint directory using `--reference-dir`.
+See [metric definitions](docs/reproducibility.md#diagnostic-metrics) for how the comparisons are measured.
 
 ## Repository layout
 
@@ -168,10 +162,10 @@ assets/figures/       Paper architecture and empirical diagnostic figures
 configs/train/       Four base task recipes and loss/component ablations
 src/phylatent/       Models, auxiliary losses, preprocessing and training
   evaluation/        Closed-loop CEM planning
-  diagnostics/       Frame/branch sampling and final diagnostic statistics
+  diagnostics/       Observation/action sampling and diagnostic metrics
 scripts/             Training, evaluation, diagnostics and checkpoint checks
 checkpoints/         Four inference weights, loading configs and hash manifest
-docs/                Data, reproducibility, source mapping and validation
+docs/                Data, training, evaluation and visual guides
 licenses/            Original third-party license notices
 tests/               CPU checks of losses, configurations and metrics
 ```
@@ -180,9 +174,5 @@ tests/               CPU checks of losses, configurations and metrics
 
 The code is released under [MIT](LICENSE). LeWorldModel attribution is retained
 in [third-party notices](THIRD_PARTY_NOTICES.md). Data and external dependencies
-retain their own licenses. Cite the PhyLatent paper when using this method;
-`CITATION.cff` records the software without inventing paper metadata.
-
-The bundled architecture configs have been strictly checked against the weights;
-they are loading configs rather than original training histories. For scope and
-known reproducibility limits, read [reproducibility notes](docs/reproducibility.md).
+retain their own licenses. Please cite the PhyLatent paper when using this method;
+software citation information is in `CITATION.cff`.

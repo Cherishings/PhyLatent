@@ -1,70 +1,71 @@
-# Reproducibility / 可复现范围
+# Training and evaluation notes / 训练与评估说明
 
-This release contains the base PhyLatent method and fresh-training ablations.
-It does not contain fine-tuning, recovery, candidate selection, or server
-orchestration. The four inference weights match the frozen final-model
-manifest by SHA256. Their architecture configurations were reconstructed from
-the common architecture template and checked with strict state-dictionary
-loading; they are not original per-run training records.
+## Training
 
-本发布只提供基础方法、从头训练和消融；四个推理权重哈希匹配最终模型清单。
-配套模型配置是根据结构模板和权重核验生成的加载配置，不是原始训练履历。
-基础配方不承诺直接重新生成每个现成论文权重。
+The task recipes are in `configs/train/`. All tasks use a 192-dimensional
+ViT-Tiny/14 JEPA, three history observations, four-observation clips with
+frameskip 5, and AdamW with learning rate 5e-5 and weight decay 1e-3.
+Training uses constant learning rate, bf16, gradient clipping 1.0 and seed 3072.
 
-## Base recipes
+Cube uses batch 32 with four gradient-accumulation steps, giving an effective
+batch size of 128, for ten full epochs. The other tasks use batch 32 for ten
+epochs, capped at 10,000 training batches per epoch.
 
-All tasks use a 192-dimensional ViT-Tiny/14 JEPA, history size 3, four-observation
-clips with frameskip 5, AdamW (LR 5e-5, weight decay 1e-3), constant LR, bf16,
-gradient clipping 1.0, and seed 3072. This release explicitly seeds initialization
-and workers; that does not establish the initialization seeds of historical runs.
+Clips are randomly split approximately 90/10. This is not an episode-level
+split: overlapping clips may occur in both subsets. Non-image normalization
+statistics are computed before the split.
 
-Cube uses microbatch 32 × accumulation 4 (effective batch 128) for ten full
-epochs. TwoRooms, Reacher and PushT use batch 32, ten epochs and at most 10,000
-training batches per epoch. A capped epoch is not a complete dataset pass.
+The supplied recipes support training from initialization. They are not
+complete training histories for the bundled checkpoints, so exact checkpoint
+regeneration is not guaranteed. Checkpoint configs describe model loading.
+Evaluation seeds select evaluation runs, not independently trained models.
 
-数据按 clip 随机约 90/10 划分，并非 episode-disjoint；相邻重叠 clips 可能跨子集。
-非图像字段的标准化统计来自划分前的数据列。evaluation seeds 不是独立训练次数。
+配方支持从头训练；随附权重的配置用于模型加载，并非完整训练记录。
+数据按片段随机划分，相邻片段可能跨训练集与验证集。评估种子不代表独立训练次数。
 
-Auxiliary weights are task-specific in `configs/train/{task}.yaml`. Loss mapping:
-PSG→state; FRA→align (projected plus action-attention alignment);
-SVIP→invariance; CASP→action_separation; LD→diffusion.
-Legacy internal names SVIC/CASC correspond to SVIP/CASP.
+## Losses and ablations
 
-Each ablation is initialized afresh using the same base training entry point.
-`wo_physical_group` disables PSG+FRA; `wo_counterfactual_group` disables CASP+LD.
-`wo_invariance_group` disables SVIP and is an alias of `wo_svip` in this method.
-Use distinct output directories for distinct runs; existing nonempty training
-output directories are rejected instead of resumed.
+Task-specific loss weights are in `configs/train/<task>.yaml`.
+The configuration keys correspond to these objectives:
 
-## Final diagnostics
+- PSG: `state` — physical state supervision.
+- FRA: `align` — future relation alignment.
+- SVIP: `invariance` — consistency under appearance changes.
+- CASP: `action_separation` — separation of action-conditioned futures.
+- LD: `diffusion` — conditional latent denoising.
 
-Inv averages clean-eligible ordering reversals across the nine appearance
-conditions at each anchor, then across anchors/seeds, and reports clean coverage.
-Dist uses Q1-vs-Q4 physical near/far ordering; ties and non-finite values fail.
-CF uses seven constant action branches, 21 branch pairs, fixed bottom/top-five
-physical strata, and encoder eligibility. Predicted ordering ties fail.
-CF pools eligible failures/counts and uses H5 as primary, H1/H3 as sensitivity.
+Each ablation starts a new training run. `wo_physical_group` disables PSG and
+FRA; `wo_counterfactual_group` disables CASP and LD; `wo_invariance_group`
+disables SVIP and is equivalent to `wo_svip`. Use a separate output directory
+for each run.
 
-Optional paired comparisons use the same anchors/actions; CF uses the
-reference–PhyLatent common eligibility set, while ablation families require
-an intersection over every included model. A single pair's intersection must
-not be labeled a family-global intersection. Bootstrap resamples seed then
-anchor; default 10,000 percentile replicates.
+## Diagnostic metrics
 
-Standalone model CF rates have model-specific denominators and are not the
-paper's matched-comparison rates. Raw arrays and sampling manifests are saved
-so comparison families can be reconstructed without changing model weights.
-单模型 CF 分母与论文配对共同资格分母不同，不可直接混用数字。
+Invariance measures near/far order reversals after appearance changes, using
+comparisons ordered correctly before perturbation. Results are averaged over
+appearance conditions, observations and seeds.
 
-## Validation boundary
+Distinguishability compares states from the nearest and farthest physical-distance
+quartiles. Tied or non-finite latent distances count as failures.
 
-Local CPU checks cover syntax, configuration composition, metric edge cases,
-base-loss equivalence, strict loading of all four checkpoints and inference
-shape/finite checks. Full training and simulator/GPU evaluations require the
-runtime dependencies and official datasets and are not claimed to have been
-run as part of this extraction. See `validation.md` for the recorded checks.
+Counterfactual diagnostics compare seven constant-action branches. Physically
+similar and dissimilar branch pairs are selected by their actual outcomes.
+A comparison is scored when encoded observed futures preserve the physical
+ordering; a reversal or tie in predicted ordering counts as failure.
+The primary prediction horizon is five, with one and three also reported.
 
-No frozen paper-result archive is bundled. In particular the prior Reacher
-success-table override was screenshot-confirmed and is not promoted here to a
-verified raw-per-seed reconstruction. Published table values are not changed.
-未把原工作区的截图覆盖汇总当作已验证的逐 seed 原始结果，未修改论文数字。
+For model comparisons, use the same sampled observations and action branches,
+and the intersection of comparisons that qualify for every model being compared.
+Single-model counterfactual rates can use different comparison sets and should
+not be compared as if their denominators matched. Confidence intervals resample
+seeds and then observations. The command saves raw arrays and sampling settings
+for further analysis.
+
+模型对比应使用相同观测、动作分支和共同可比较样本。单模型统计的样本范围可能不同，
+不能直接当作同一组配对结果比较。
+
+## Verification
+
+See [verification commands](validation.md) for checkpoint and CPU checks.
+Full training and dataset-based GPU evaluation have not been independently
+verified for this release package.

@@ -4,46 +4,32 @@
 
 ## Architecture
 
-The homepage reproduces the author-confirmed Figure 3 from the paper. Its
-source artwork was named `figure2_v30` before the final paper numbering.
-Repeated encoders and predictors share parameters; `sg` marks stop-gradient.
-Future observations provide training supervision. Planning uses the learned
-latent dynamics and does not decode predicted latent states into video frames.
+Figure 3 shows how PhyLatent learns and uses a latent world model.
+The encoder represents observations, and the predictor estimates future states under candidate actions.
+The auxiliary objectives guide training; planning uses the encoder and predictor.
+Repeated encoders and predictors share parameters. `sg` denotes stop-gradient.
 
-## Reading the empirical collapse plot
+## Collapse diagnostics
 
-The homepage scatter plot shows the **LeWM reference model on Cube**. The
-original export selected `cube`, `lewm`, INV/Dist v2 and CF ordering-v3; it is
-an illustration of diagnostic failures, not a measurement of PhyLatent gains.
-The three panels use different eligible comparison sets. The counterfactual
-panel uses horizon 5 and observed-order eligibility.
+We introduce three diagnostics for the physical relationships needed by latent-space planning.
+The paper provides their formal definitions and equations. The scatter plot applies these diagnostics
+to the **LeWM reference model on Cube**.
+Red points mark errors, other colors mark preserved order, and the planes mark the boundaries between them.
 
-There are 15,000 eligible invariance comparisons, 15,000 distinguishability
-comparisons and 3,485 counterfactual comparisons before plot subsampling.
-Each panel displays a uniform sample of 2,500 points. The distinguishability
-panel uses a label-blind 1%–99.9% viewport with padding; 44 sampled points lie
-outside the viewport. Other panels use their full range. See the copied
-[plot metadata](../assets/figures/collapse_diagnostics.json).
+- **Invariance:** changing appearance reverses the model's near/far ordering.
+- **Distinguishability:** a physically farther state appears closer in latent space.
+- **Counterfactual dynamics:** predictions reverse the ordering found in observed futures.
 
-## What the failures look like in observations
+The figure illustrates these errors; it does not compare PhyLatent against LeWM or report task success rates.
 
-![Selected Cube examples of three diagnostic failures](../assets/figures/collapse_examples.png)
+## Observation examples
 
-These selected **LeWM / Cube** examples explain the three diagnostics:
+![Three forms of collapse in Cube observations](../assets/figures/collapse_examples.png)
 
-1. A checker perturbation leaves physical distances unchanged but reverses a previously correct latent ordering.
-2. The physically farther reference is closer in latent distance.
-3. The predicted ordering of action-branch differences reverses the ordering of encoded observed futures.
+From top to bottom:
 
-The future images in the third row are actual simulator observations, not
-images decoded from latent predictions. The rows come from different initial
-states. Reference images in the second row are not consecutive video frames.
-These examples establish diagnostic behavior; they do not by themselves show
-closed-loop failure, causal attribution, aggregate success rates, or a paired
-PhyLatent improvement.
+1. A checker pattern changes the appearance while leaving the physical state unchanged.
+2. Physically near and far states receive the wrong latent ordering.
+3. Different actions lead to real futures whose ordering the predictor fails to preserve.
 
-## Asset provenance
-
-All images are copied from existing paper assets without changing their
-contents. The [asset manifest](../assets/figures/manifest.json) records source
-filenames and SHA256 hashes. No baseline implementation or weights are added.
+The future images are simulator observations. The model predicts latent states, not rendered images.

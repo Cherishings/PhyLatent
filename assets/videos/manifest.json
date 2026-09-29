@@ -1,461 +1,57 @@
 {
-  "scope": "Selected complete successful rollouts with frozen release weights. Long-demo budget 400, not the paper 50-step benchmark.",
-  "tasks": {
-    "cube": {
-      "episode": 3236,
-      "start": 26,
-      "goal_offset": 174,
-      "seed": 607,
-      "weights_sha256": "ec44f6a7b3323c385ec26195592a76214f7e9f7a91f4f6c1809da1414fff7139",
-      "steps": 48,
-      "success": true,
-      "success_by_200": true,
-      "source_fps": 20,
-      "playback_speed": 0.25,
-      "trajectory_sha256": "4953ea9cb8fb25a2e331c3a629f441088d151916895296a3fe2fa3bcfeb2442d",
-      "first_environment_success_step": 16,
-      "recording_stop_rule": "three-frame released placement; environment_goal_success stored separately",
-      "demonstration_budget": 100
-    },
-    "tworoom": {
-      "episode": 688,
-      "start": 0,
-      "goal_offset": 100,
-      "seed": 604,
-      "weights_sha256": "040e4370d36ca55eb0d9a0085e96d3a440b14885b3f977e2618549e36b191d9d",
-      "steps": 45,
-      "success": true,
-      "success_by_200": true,
-      "source_fps": 10,
-      "playback_speed": 0.5,
-      "trajectory_sha256": "c61fe34b3b0a64ea7815711c19a0f25409a5440b970e1d715078930fd027aba1"
-    },
-    "reacher": {
-      "episode": 9184,
-      "start": 0,
-      "goal_offset": 200,
-      "seed": 602,
-      "weights_sha256": "41cfddf6f3dd6cd3134886b3919c02ee5562603436de9ee04d36bde72807bc8d",
-      "steps": 25,
-      "success": true,
-      "success_by_200": true,
-      "source_fps": 25,
-      "playback_speed": 0.1,
-      "trajectory_sha256": "91d0dcdf0a6dc1ef4cc90a107915a555db3d4367c2332654d63e37d778326e6b"
-    },
-    "pusht": {
-      "episode": 13489,
-      "start": 0,
-      "goal_offset": 117,
-      "seed": 601,
-      "weights_sha256": "bdc8d17f6a57fee71c0489aa6a9a193b972c8423958f645712a29e220a810f61",
-      "steps": 50,
-      "success": true,
-      "success_by_200": true,
-      "source_fps": 10,
-      "playback_speed": 0.5,
-      "trajectory_sha256": "66ff263753a821e998ecb8e50ce87508153a6c6558a31b1a89445912e67ca3e4"
-    }
-  },
-  "cube_case_notes": {
-    "invariance": {
-      "pair_source": "experiments/section3_case_studies_v1/rollouts_20260924_v5/invariance_checker/seed_600",
-      "diagnostic_source": "experiments/section3_case_studies_v1/decision_search_v2_invariance/20164/lewm/trajectory.npz",
-      "same_start_goal_check": "PASS",
-      "pair_trajectory_sha256": {
-        "lewm": "1eeb2fb4a3d7a5385a628e8700aaef8ef5f663a13e0b1a274a90368524f9b84a",
-        "phylatent": "fc9094fe8ae02c3268020086c7c7d49a7fdf36aebf544ab70d47a7e4952f48b2"
-      },
-      "caveat": ""
-    },
-    "distinguishability": {
-      "pair_source": "experiments/section3_case_studies_v1/dist_resolved_eval_search_20260926_v1/rollouts/1201110",
-      "diagnostic_source": "experiments/section3_case_studies_v1/frame_failure_v1_dist_0/source_82020/lewm/trajectory.npz",
-      "same_start_goal_check": "PASS",
-      "pair_trajectory_sha256": {
-        "lewm": "dfd9addc03a588b7fe2c4bd1aeca191376046932066a6e4987766ca227b7fa0a",
-        "phylatent": "746d5f807874ef5b47c7290caa15bc133bff15609d9c0c589cd36a04cc34f30f"
-      },
-      "caveat": "Task-goal recovery 1201110 is separate from diagnostic case 82020; full-state ordering criterion fails for the recovery pair."
-    },
-    "counterfactual": {
-      "pair_source": "experiments/section3_case_studies_v1/decision_search_v2_counterfactual/891917",
-      "diagnostic_source": "experiments/section3_case_studies_v1/decision_search_v2_counterfactual/891917/lewm/trajectory.npz",
-      "same_start_goal_check": "PASS",
-      "pair_trajectory_sha256": {
-        "lewm": "f4f01bb34767757b5bd2544e5c0bb3abe0914b45afa564e911e59dba8a48f9d6",
-        "phylatent": "af03cc7d3eb5ce792eeacbb454df6584a572f0506f78b7ab2dce32c3fbf969b5"
-      },
-      "caveat": ""
-    }
-  },
+  "description": "PhyLatent task demonstrations and Cube diagnostic comparisons.",
+  "notes": [
+    "Demonstrations illustrate behavior; they are not aggregate benchmark results.",
+    "Future images are simulator observations; the model predicts latent states.",
+    "Distinguishability diagnosis and paired planning use different initial states; planning success does not establish recovery of that diagnostic.",
+    "The counterfactual comparison includes an additional action proposal that was not in the original LeWM candidate pool.",
+    "Paired executions use the same physical initial state and goal; each model selects its own actions.",
+    "The distinguishability planning comparison uses a wider display camera rendered from the recorded states."
+  ],
   "files": {
     "pusht_full_en.mp4": {
-      "file": "edited/pusht_full_en.mp4",
-      "frames": 486,
-      "fps": 30.0,
-      "seconds": 16.2,
-      "bytes": 160077,
-      "sha256": "e097638e9955a69c8bac9ac8782e7062a41d20b3d8bc54f8e0502dc67096b612"
+      "sha256": "e097638e9955a69c8bac9ac8782e7062a41d20b3d8bc54f8e0502dc67096b612",
+      "bytes": 160077
     },
     "cube_three_cases_en.mp4": {
-      "file": "edited/cube_three_cases_en.mp4",
-      "frames": 4530,
-      "fps": 30.0,
-      "seconds": 151.0,
-      "bytes": 5327992,
-      "sha256": "19030b68c81a10580cf7398fae4f63a26f4a6dc98415a51ba675c45e40e4d4b3"
+      "sha256": "19030b68c81a10580cf7398fae4f63a26f4a6dc98415a51ba675c45e40e4d4b3",
+      "bytes": 5327992
     },
     "four_tasks_overview.mp4": {
-      "file": "edited/four_tasks_overview.mp4",
-      "frames": 144,
-      "fps": 10.0,
-      "seconds": 14.4,
-      "bytes": 275948,
-      "sha256": "880703089c178f54b24603892af2265c7124eb3d78d015435aea759c7e1cd0f5"
+      "sha256": "880703089c178f54b24603892af2265c7124eb3d78d015435aea759c7e1cd0f5",
+      "bytes": 275948
     },
     "cube_three_cases_zh.mp4": {
-      "file": "edited/cube_three_cases_zh.mp4",
-      "frames": 4530,
-      "fps": 30.0,
-      "seconds": 151.0,
-      "bytes": 5174542,
-      "sha256": "99dd4d70f9f05349ca149a3173493e29ee8a868c1c43ea1faa04218937e0cd01"
+      "sha256": "99dd4d70f9f05349ca149a3173493e29ee8a868c1c43ea1faa04218937e0cd01",
+      "bytes": 5174542
     },
     "reacher_full_zh.mp4": {
-      "file": "edited/reacher_full_zh.mp4",
-      "frames": 492,
-      "fps": 30.0,
-      "seconds": 16.4,
-      "bytes": 164035,
-      "sha256": "ae38032c147d8a0220ae241b35cfee0a15fa92097197cf235978343ecf6f43de"
+      "sha256": "ae38032c147d8a0220ae241b35cfee0a15fa92097197cf235978343ecf6f43de",
+      "bytes": 164035
     },
     "pusht_full_zh.mp4": {
-      "file": "edited/pusht_full_zh.mp4",
-      "frames": 486,
-      "fps": 30.0,
-      "seconds": 16.2,
-      "bytes": 154265,
-      "sha256": "f9a1e22ed9fcd390e044d6a95acc4074565151987ede57c2006ceecb1c4dbb4c"
+      "sha256": "f9a1e22ed9fcd390e044d6a95acc4074565151987ede57c2006ceecb1c4dbb4c",
+      "bytes": 154265
     },
     "tworoom_full_en.mp4": {
-      "file": "edited/tworoom_full_en.mp4",
-      "frames": 456,
-      "fps": 30.0,
-      "seconds": 15.2,
-      "bytes": 120391,
-      "sha256": "8344b571765d8d6856dee97ad8390c262f13596fdcb9156649d80b81b17e1731"
+      "sha256": "8344b571765d8d6856dee97ad8390c262f13596fdcb9156649d80b81b17e1731",
+      "bytes": 120391
     },
     "cube_full_zh.mp4": {
-      "file": "edited/cube_full_zh.mp4",
-      "frames": 474,
-      "fps": 30.0,
-      "seconds": 15.8,
-      "bytes": 465319,
-      "sha256": "a05de107fe4da773096e8f4c51f9d5b1f1688aa9704e6b18e9ece82fdbba2051"
+      "sha256": "a05de107fe4da773096e8f4c51f9d5b1f1688aa9704e6b18e9ece82fdbba2051",
+      "bytes": 465319
     },
     "tworoom_full_zh.mp4": {
-      "file": "edited/tworoom_full_zh.mp4",
-      "frames": 456,
-      "fps": 30.0,
-      "seconds": 15.2,
-      "bytes": 111486,
-      "sha256": "08adbe926b1703a8ae7059fab17e56df7f8345b1d6bd6589a97f79e454e1b764"
+      "sha256": "08adbe926b1703a8ae7059fab17e56df7f8345b1d6bd6589a97f79e454e1b764",
+      "bytes": 111486
     },
     "cube_full_en.mp4": {
-      "file": "edited/cube_full_en.mp4",
-      "frames": 474,
-      "fps": 30.0,
-      "seconds": 15.8,
-      "bytes": 469595,
-      "sha256": "e0ced0e74d03e9bee1e45c4efbb176181cd6065da29ae3cd40905a121fad5b6d"
+      "sha256": "e0ced0e74d03e9bee1e45c4efbb176181cd6065da29ae3cd40905a121fad5b6d",
+      "bytes": 469595
     },
     "reacher_full_en.mp4": {
-      "file": "edited/reacher_full_en.mp4",
-      "frames": 492,
-      "fps": 30.0,
-      "seconds": 16.4,
-      "bytes": 168822,
-      "sha256": "1aa2680a01f5e55656b46aa7cd35fcef33f4571358005d4691da435999a3d713"
+      "sha256": "1aa2680a01f5e55656b46aa7cd35fcef33f4571358005d4691da435999a3d713",
+      "bytes": 168822
     }
-  },
-  "cube_display_camera": {
-    "purpose": "display-only re-render; original policy observations unchanged",
-    "case": 1201110,
-    "same_camera_for_both_models": true,
-    "env_steps_executed": 0,
-    "camera": {
-      "name": "front_pixels",
-      "original_fovy": 45.0,
-      "fovy": 65.0,
-      "original_pos": [
-        1.053,
-        -0.014,
-        0.639
-      ],
-      "position": [
-        0.9148170597277141,
-        0.08600000000000001,
-        0.8101884196366853
-      ],
-      "screen_right_offset_m": 0.1,
-      "screen_up_offset_m": 0.22
-    },
-    "traces": {
-      "lewm": {
-        "source_sha256": "dfd9addc03a588b7fe2c4bd1aeca191376046932066a6e4987766ca227b7fa0a",
-        "frames": 51,
-        "state_checks": "PASS"
-      },
-      "phylatent": {
-        "source_sha256": "746d5f807874ef5b47c7290caa15bc133bff15609d9c0c589cd36a04cc34f30f",
-        "frames": 21,
-        "state_checks": "PASS"
-      }
-    }
-  },
-  "cube_intro_layout": {
-    "script_sha256": "c12aa117d1bdb2ea2f4448574c051650551d8433ff0ff0a3cab713883c95946f",
-    "base_renderer_sha256": "a215e3524ebee4adb18ed413b4e00233de612e3482250fdb33ab0722ed6ed862",
-    "title_preserved": true,
-    "intro_body_lines_removed": true,
-    "image_size": 280,
-    "image_top": 249,
-    "equal_horizontal_outer_margins": true,
-    "font_size_increment_px": 2,
-    "labels": {
-      "invariance": [
-        "Invariance collapse diagnosis",
-        "不变性坍缩诊断"
-      ],
-      "distinguishability": [
-        "Distinguishability collapse diagnosis",
-        "可区分性坍缩诊断"
-      ],
-      "counterfactual": [
-        "Counterfactual collapse diagnosis",
-        "反事实坍缩诊断"
-      ]
-    }
-  },
-  "cube_plain_language_edit": {
-    "script_sha256": "9e2826df4e189abfce10d7f4e9acd5c113d4e4ca452e9b4ca527a324fe31dacc",
-    "intro_pixels_unchanged": true,
-    "fps": 30,
-    "fade_frames": 12,
-    "fade_note": "Added smoothstep cross-dissolves between held boundary images only. No source motion removed or interpolated.",
-    "timelines": {
-      "invariance": {
-        "fps": 30,
-        "frames": 1674,
-        "seconds": 55.8,
-        "stages": [
-          {
-            "stage": "intro",
-            "start_frame": 0,
-            "frames": 120
-          },
-          {
-            "stage": "context",
-            "start_frame": 132,
-            "frames": 180
-          },
-          {
-            "stage": "truth",
-            "start_frame": 324,
-            "frames": 180
-          },
-          {
-            "stage": "clean",
-            "start_frame": 516,
-            "frames": 210
-          },
-          {
-            "stage": "checker",
-            "start_frame": 738,
-            "frames": 240
-          },
-          {
-            "stage": "failure",
-            "start_frame": 990,
-            "frames": 306
-          },
-          {
-            "stage": "paired",
-            "start_frame": 1308,
-            "frames": 366
-          }
-        ]
-      },
-      "distinguishability": {
-        "fps": 30,
-        "frames": 1320,
-        "seconds": 44.0,
-        "stages": [
-          {
-            "stage": "intro",
-            "start_frame": 0,
-            "frames": 120
-          },
-          {
-            "stage": "truth",
-            "start_frame": 132,
-            "frames": 240
-          },
-          {
-            "stage": "score",
-            "start_frame": 384,
-            "frames": 240
-          },
-          {
-            "stage": "failure",
-            "start_frame": 636,
-            "frames": 306
-          },
-          {
-            "stage": "paired",
-            "start_frame": 954,
-            "frames": 366
-          }
-        ]
-      },
-      "counterfactual": {
-        "fps": 30,
-        "frames": 1512,
-        "seconds": 50.4,
-        "stages": [
-          {
-            "stage": "intro",
-            "start_frame": 0,
-            "frames": 120
-          },
-          {
-            "stage": "truth",
-            "start_frame": 132,
-            "frames": 210
-          },
-          {
-            "stage": "actual",
-            "start_frame": 354,
-            "frames": 210
-          },
-          {
-            "stage": "predicted",
-            "start_frame": 576,
-            "frames": 240
-          },
-          {
-            "stage": "failure",
-            "start_frame": 828,
-            "frames": 306
-          },
-          {
-            "stage": "paired",
-            "start_frame": 1146,
-            "frames": 366
-          }
-        ]
-      }
-    },
-    "combined_frames": 4530,
-    "evidence": {
-      "invariance": {
-        "distances_cm": [
-          11.955395000012357,
-          2.946598814258035
-        ],
-        "source_hashes": {
-          "decision.json": "c7fe0b477a5c64e7363421487469ea903bd2ff3694276ffd05902aa0c872897b",
-          "verified_encoding.json": "14a6af75daef836cad0a9f08d0e6bae8e17d83113e9f1b843f487721258982e1"
-        },
-        "alternative_in_original_pool": true,
-        "clean": [
-          381.7696533203125,
-          365.70709228515625
-        ],
-        "actual": [
-          417.75323486328125,
-          410.37030029296875
-        ],
-        "predicted": [
-          381.7696533203125,
-          365.70709228515625
-        ],
-        "checker": [
-          29.22081184387207,
-          34.54651641845703
-        ]
-      },
-      "distinguishability": {
-        "distances_cm": [
-          9.999665575200124,
-          1.4928947161186206
-        ],
-        "actual": [
-          207.37326049804688,
-          345.23797607421875
-        ],
-        "source_hashes": {
-          "selected.json": "fc4fe95a4987698d5684274ceac46a5d547566c34d5d49261fa41f7ea3cc25e5"
-        }
-      },
-      "counterfactual": {
-        "distances_cm": [
-          8.345567428690446,
-          0.40315303718146767
-        ],
-        "source_hashes": {
-          "decision.json": "0aa8d3d375b178c778625d6b5999f6fdb29dc23c2de08c800c51d7ceb847254e",
-          "verified_encoding.json": "3ccabf61ff8102157034170981b8991bb006be73ef95cddf74ad49c541242196"
-        },
-        "alternative_in_original_pool": false,
-        "clean": [
-          2.868325710296631,
-          11.1917085647583
-        ],
-        "actual": [
-          227.16319274902344,
-          13.175887107849121
-        ],
-        "predicted": [
-          2.868325710296631,
-          11.1917085647583
-        ]
-      }
-    }
-  },
-  "cube_minimal_edit": {
-    "case_numbers_on_screen": false,
-    "bridge_cards": false,
-    "summary_cards": false,
-    "intro_unchanged": true,
-    "final_hold_seconds": 2,
-    "paired_segment_label": "Planning comparison",
-    "evidence_provenance": "Retained in documentation and source metadata"
-  },
-  "homepage_refresh": {
-    "baseline": "showcase_v11",
-    "cube_films_unchanged": true,
-    "individual_task_films_unchanged": true,
-    "overview_header_removed": true,
-    "overview_step_counters_removed": true,
-    "frames": 144,
-    "fps": 10.0,
-    "all_source_frames_retained": true,
-    "cube_cover_source": "showcase_v11/stills/cube_counterfactual_result_{en,zh}.png",
-    "source_trajectory_sha256": {
-      "cube": "4953ea9cb8fb25a2e331c3a629f441088d151916895296a3fe2fa3bcfeb2442d",
-      "tworoom": "c61fe34b3b0a64ea7815711c19a0f25409a5440b970e1d715078930fd027aba1",
-      "reacher": "91d0dcdf0a6dc1ef4cc90a107915a555db3d4367c2332654d63e37d778326e6b",
-      "pusht": "66ff263753a821e998ecb8e50ce87508153a6c6558a31b1a89445912e67ca3e4"
-    },
-    "preview_sha256": {
-      "cube_cases_cover.png": "ad0803bfc988a2aae0e4ff20d2cc6c71237d42f7b42fc805382f6434b9014c0b",
-      "cube_cases_cover_zh.png": "af73e32e41f1569574a8a83d439194f3756e9ae017d46286f00ab81d0a816046",
-      "four_tasks_final.png": "b117ba2fd87ca8d29087cda143146f8ca21c76350e5026f0cb003d57e7033b3e",
-      "four_tasks_cover.jpg": "3b31cfab3d2ff17aa75ae1070a79fbfa3f734339d17d47bc19547cb041fe6727",
-      "four_tasks_preview.gif": "bc4c2f13ca8032268733203476837d2a49c9dfaf197e58d6244c99a3053eeeec"
-    },
-    "script_sha256": "8e73e71e74cc23fcbdcf81223c8e6527ab9a6b667fb9c3f941c2ba5d708e80ad"
   }
 }

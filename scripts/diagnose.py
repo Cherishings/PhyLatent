@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Collect and summarize final PhyLatent collapse diagnostics."""
+"""Collect and summarize PhyLatent collapse diagnostics."""
 import argparse
 import json
 from pathlib import Path

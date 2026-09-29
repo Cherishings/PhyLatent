@@ -1,4 +1,4 @@
-"""Summarize final invariance, distinguishability, and CF ordering metrics."""
+"""Summarize invariance, distinguishability, and counterfactual ordering metrics."""
 import numpy as np
 from .metrics import hierarchical_paired_bootstrap
 from .ordering import model_ordering_arrays, hierarchical_pooled_paired_bootstrap

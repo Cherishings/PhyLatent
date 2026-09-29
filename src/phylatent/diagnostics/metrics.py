@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Model-agnostic statistics for the frozen collapse protocol v2."""
+"""Model-agnostic statistics for collapse diagnostics."""
 
 from __future__ import annotations
 

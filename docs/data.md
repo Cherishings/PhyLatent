@@ -1,15 +1,14 @@
 # Data preparation / 数据准备
 
 Obtain the task datasets from their official publishers and follow their
-licenses. The original workspace used these LeWorldModel dataset repositories:
+licenses. The task datasets are available from these LeWorldModel repositories:
 
 - Cube: https://huggingface.co/datasets/quentinll/lewm-cube
 - TwoRooms: https://huggingface.co/datasets/quentinll/lewm-tworooms
 - Reacher: https://huggingface.co/datasets/quentinll/lewm-reacher
 - PushT: https://huggingface.co/datasets/quentinll/lewm-pusht
 
-This package does not bundle raw data or claim a verified upstream dataset
-revision. Record the downloaded revision and file SHA256 for your experiments.
+Download the datasets separately. Record the dataset revision used for your experiments.
 原始数据不随代码发布；请遵守各数据集许可证，记录下载版本和文件哈希。
 
 Place the extracted HDF5 files together in the directory passed as `data_root`

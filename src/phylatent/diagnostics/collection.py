@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Paired four-task evaluator for Dynamics-Relevant Collapse Protocol v2."""
+"""Collect paired collapse diagnostics across four tasks."""
 
 from __future__ import annotations
 
