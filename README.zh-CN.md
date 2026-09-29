@@ -1,18 +1,14 @@
 <p align="center">
   <picture>
-    <source media="(max-width: 640px)" srcset="assets/readme/hero_zh_mobile.svg">
-    <img src="assets/readme/hero_zh.svg" alt="PhyLatent — 让潜在状态空间保持物理结构" width="1000">
+    <source media="(max-width: 640px)" srcset="assets/readme/hero_motion_zh_mobile.gif">
+    <img src="assets/readme/hero_motion_zh.gif" alt="PhyLatent — 让潜在状态空间保持物理结构" width="1000">
   </picture>
 </p>
 
 <p align="center">
-  <a href="https://arxiv.org/pdf/2608.05720"><img src="assets/readme/nav_paper_zh.svg" alt="论文" width="112"></a>&nbsp;<a href="src/phylatent/"><img src="assets/readme/nav_code_zh.svg" alt="代码" width="112"></a>
+  <a href="https://arxiv.org/pdf/2608.05720"><img src="assets/readme/nav_paper_zh.svg" alt="论文" width="84"></a><a href="src/phylatent/"><img src="assets/readme/nav_code_zh.svg" alt="代码" width="84"></a><a href="checkpoints/"><img src="assets/readme/nav_models_zh.svg" alt="模型" width="84"></a><a href="docs/videos.md"><img src="assets/readme/nav_videos_zh.svg" alt="视频" width="84"></a>
   <br>
-  <a href="checkpoints/"><img src="assets/readme/nav_models_zh.svg" alt="模型" width="112"></a>&nbsp;<a href="docs/videos.md"><img src="assets/readme/nav_videos_zh.svg" alt="视频" width="112"></a>
-</p>
-
-<p align="center">
-  <a href="README.md">English</a> &nbsp; / &nbsp; <a href="README.zh-CN.md">简体中文</a>
+  <sub><a href="README.md">English</a> &nbsp; / &nbsp; <a href="README.zh-CN.md">简体中文</a></sub>
 </p>
 
 PhyLatent 通过改善 JEPA 世界模型的潜在状态空间，提升模型预测控制（MPC）的规划能力。
@@ -28,7 +24,11 @@ PhyLatent 通过改善 JEPA 世界模型的潜在状态空间，提升模型预�
   <sub>论文报告的平均任务成功率</sub>
 </p>
 
-## 方法结构
+<p align="center"><sub><a href="#method">方法结构</a> &nbsp; · &nbsp; <a href="#diagnostics">坍缩诊断</a> &nbsp; · &nbsp; <a href="#experiments">实验结果</a> &nbsp; · &nbsp; <a href="#demonstrations">任务演示</a> &nbsp; · &nbsp; <a href="#installation">快速开始</a></sub></p>
+
+<a id="method"></a>
+
+## <img src="assets/readme/section_method.svg" width="28" alt=""> 方法结构
 
 ![PhyLatent 方法结构：论文 Figure 3](assets/figures/architecture.png)
 
@@ -47,7 +47,9 @@ PhyLatent 的各项设计都围绕改善状态空间展开，进而提高规划�
 代码对应：[模型主干](src/phylatent/models/jepa.py)、[辅助头](src/phylatent/models/heads.py)、
 [损失函数](src/phylatent/losses.py)、[训练](src/phylatent/training.py)和[规划](src/phylatent/evaluation/planning.py)。
 
-## 潜在状态空间的坍缩诊断
+<a id="diagnostics"></a>
+
+## <img src="assets/readme/section_diagnostics.svg" width="28" alt=""> 潜在状态空间的坍缩诊断
 
 我们提出三类诊断，检查潜在状态空间是否保持了规划所需的物理关系。具体定义与公式见[论文](https://arxiv.org/pdf/2608.05720)。
 
@@ -70,7 +72,69 @@ PhyLatent 的各项设计都围绕改善状态空间展开，进而提高规划�
 视频展示三类诊断错误，并呈现 LeWM 与 PhyLatent 的并排执行过程。
 更多真实观测示例见[可视化说明](docs/visualizations.zh-CN.md)。
 
-## 四任务完整演示
+<a id="experiments"></a>
+
+## <img src="assets/readme/section_experiments.svg" width="28" alt=""> 实验结果
+
+### 四任务规划表现
+
+保持相同的模型主干与规划器，PhyLatent 相对 LeWM 将四任务平均成功率从 **79.92% 提高到 86.54%**。
+Cube 和 TwoRooms 的提升最明显，Reacher 基本持平。
+
+[![表 1：四任务规划成功率](assets/results/planning_success.png)](https://arxiv.org/pdf/2608.05720#page=6)
+
+<sub>Table 1 · 成功率（%），报告六个评估随机种子的均值 ± 标准差。PLDM 与 DINO-WM 为已有文献报告的基线。</sub>
+
+### 潜在状态空间的质量
+
+我们检查外观变化、状态编码和未来预测是否破坏物理关系。
+四个任务的坍缩率均有所降低，其中 Reacher 的反事实指标变化较小。
+
+[![表 2：不变性、可区分性与反事实动力学坍缩率](assets/results/collapse_rates.png)](https://arxiv.org/pdf/2608.05720#page=7)
+
+<sub>Table 2 · 数值越低越好。Inv.：不变性；Dist.：可区分性；CF-H5：与规划一致的五个动作块时域下的反事实动力学。</sub>
+
+### 路径与组件消融
+
+移除物理约束路径后，Cube 成功率从 **81.67% 降至 76.50%**。
+各项训练目标共同作用；单个诊断指标变好，并不一定意味着规划也变好。
+
+[![表 4：Cube 路径与组件消融](assets/results/cube_ablations.png)](https://arxiv.org/pdf/2608.05720#page=8)
+
+<sub>Table 4 · Full 以外各列表示移除对应组件或整条路径。反事实指标使用消融组共同的比较集合，统计范围与 Table 2 不同。</sub>
+
+<details>
+<summary><strong>展开更多实验：视觉鲁棒性、目标距离与完整消融</strong></summary>
+
+### 视觉鲁棒性
+
+在 Cube 中，PhyLatent 更能应对背景与纹理变化。不同任务的表现存在差异，
+大幅外观变化对 TwoRooms 和 Reacher 仍然有挑战。
+
+[![图 4：外观变化下的规划成功率](assets/results/appearance_robustness.png)](https://arxiv.org/pdf/2608.05720#page=7)
+
+### 更大目标间隔下的规划
+
+论文分别测试了时间间隔与真实物理位移。在 Cube 物理位移最大的分组中，
+成功率从 **26.67% 提高到 60.00%**。
+
+[![图 5：更大目标间隔下的规划表现](assets/results/goal_separation.png)](https://arxiv.org/pdf/2608.05720#page=9)
+
+### 监督信息与损失权重
+
+[![表 3：物理状态监督与辅助损失权重对照](assets/results/supervision_controls.png)](https://arxiv.org/pdf/2608.05720#page=8)
+
+### 四任务完整消融
+
+[![表 A16：四任务完整路径与组件消融](assets/results/all_task_ablations.png)](https://arxiv.org/pdf/2608.05720#page=26)
+
+</details>
+
+以上表格与实验图均直接取自[论文](https://arxiv.org/pdf/2608.05720)。
+
+<a id="demonstrations"></a>
+
+## <img src="assets/readme/section_demonstrations.svg" width="28" alt=""> 四任务完整演示
 
 [![四任务执行预览](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4?raw=true)
 
@@ -82,7 +146,11 @@ PhyLatent 的各项设计都围绕改善状态空间展开，进而提高规划�
 
 完整展示各任务的成功执行过程，画面全程保留目标。更多视频见[视频目录](docs/videos.md)。
 
-## 安装
+<a id="installation"></a>
+
+## <img src="assets/readme/section_quickstart.svg" width="28" alt=""> 快速开始
+
+### 安装
 
 使用 Linux 和 Python 3.10 及以上版本；所附完整训练和规划命令需要 CUDA。
 先安装与机器匹配的 PyTorch/torchvision，再在本目录执行：
@@ -102,12 +170,12 @@ python -m unittest discover -s tests -v
 运行依赖固定 stable-pretraining 0.1.7 和 stable-worldmodel 0.1.1；模拟器所需
 系统库和资产按其上游说明安装。检查命令与验证范围见[验证说明](docs/validation.md)。
 
-## 数据准备
+### 数据准备
 
 按[数据说明](docs/data.md)获取官方数据并解压。四个 HDF5 放在 `data/` 下，
 也可以通过参数指定其他绝对路径。原始数据不随代码打包。
 
-## 从头训练
+### 从头训练
 
 ```bash
 python scripts/train.py --config-name cube data_root=/path/to/data
@@ -125,7 +193,7 @@ Cube 使用 microbatch 32 × 梯度累积 4，有效 batch 128，训练十个完
 其他任务基础配方 batch 32、十个 epochs，每 epoch 最多 10,000 个训练 batches。
 训练细节与权重复现范围见[训练与评估说明](docs/reproducibility.md)。
 
-## 消融
+### 消融
 
 复用同一从头训练入口，通过配置关闭相应损失：
 
@@ -138,7 +206,7 @@ python scripts/train.py --config-name pusht ablation=wo_counterfactual_group dat
 `wo_physical_group`、`wo_invariance_group`、`wo_counterfactual_group`。
 各损失分组和诊断指标的含义见[训练与评估说明](docs/reproducibility.md)。
 
-## 现成权重与规划评估
+### 现成权重与规划评估
 
 四任务权重在 `checkpoints/<task>/`，均有可加载的结构配置；
 `checkpoints/manifest.json` 记录文件 SHA256。
@@ -152,7 +220,7 @@ python scripts/evaluate.py cube --seed 600 --model-dir checkpoints/cube \
 规划 horizon 5、action block 5、goal offset 25、evaluation budget 50。
 使用 seeds 600–605 分别运行，保存逐 seed 结果。
 
-## 三类坍缩诊断
+### 三类坍缩诊断
 
 ```bash
 python scripts/diagnose.py --task cube --model-dir checkpoints/cube \
@@ -163,7 +231,7 @@ python scripts/diagnose.py --task cube --model-dir checkpoints/cube \
 需要与参考模型比较时，用 `--reference-dir` 指定兼容 JEPA 权重的目录。
 指标计算方式见[诊断指标说明](docs/reproducibility.md#diagnostic-metrics)。
 
-## 目录结构
+### 目录结构
 
 ```text
 assets/              论文插图、首页视觉素材与演示视频

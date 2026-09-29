@@ -1,0 +1,91 @@
+{
+  "source": "https://arxiv.org/pdf/2608.05720",
+  "source_sha256": "06b16da3143916ab748e52de43aeaf705e0fbd4b5e42263eeb5a9ebaff13ff51",
+  "description": "Original paper tables and figures. Main-table captions are summarized in the README; extended figures retain their captions. PDF link outlines are hidden. No values or plot elements have been redrawn.",
+  "files": {
+    "planning_success.png": {
+      "description": "Table 1: Planning success across four tasks",
+      "paper_page": 6,
+      "crop_points": [
+        112,
+        124,
+        500,
+        214
+      ],
+      "sha256": "46cb8d935af94829ea5d4884cf4c2b14fb00f4ed8242284566741022c9ced829",
+      "bytes": 109610
+    },
+    "collapse_rates.png": {
+      "description": "Table 2: Dynamics-relevant collapse rates",
+      "paper_page": 7,
+      "crop_points": [
+        119,
+        113,
+        493,
+        180
+      ],
+      "sha256": "b508b3bd95b6303cb7b05d80e9151c35e14f37314f55722e56eda5d981affa3c",
+      "bytes": 67129
+    },
+    "supervision_controls.png": {
+      "description": "Table 3: Supervision and auxiliary-weight controls",
+      "paper_page": 8,
+      "crop_points": [
+        102,
+        166,
+        510,
+        277
+      ],
+      "sha256": "f61fac97cd942a9060997ef0e5a2966f0fc3086962c2485df6c1da073eb52482",
+      "bytes": 151875
+    },
+    "cube_ablations.png": {
+      "description": "Table 4: Cube pathway and component ablations",
+      "paper_page": 8,
+      "crop_points": [
+        137,
+        434,
+        475,
+        523
+      ],
+      "sha256": "f23c2561798c1809a9fb602f2196cb30fd5ee76469c23c64af6f295ddfd69d74",
+      "bytes": 104920
+    },
+    "appearance_robustness.png": {
+      "description": "Figure 4: Robustness to visual appearance shifts",
+      "paper_page": 7,
+      "crop_points": [
+        102,
+        398,
+        510,
+        688
+      ],
+      "sha256": "46fde621612b918180b83ad793107095641060aaae1bc2fe80249c65f55f4a59",
+      "bytes": 266818
+    },
+    "goal_separation.png": {
+      "description": "Figure 5: Planning under increasing goal separation",
+      "paper_page": 9,
+      "crop_points": [
+        102,
+        86,
+        510,
+        327
+      ],
+      "sha256": "c608d37fe88fe0e963d4542ed598ebd987da44cb4ad06b5955da131d05120106",
+      "bytes": 238926
+    },
+    "all_task_ablations.png": {
+      "description": "Table A16: Complete four-task ablations",
+      "paper_page": 26,
+      "crop_points": [
+        102,
+        86,
+        510,
+        362
+      ],
+      "sha256": "ef81bea775948d5dcadfd7235b1eb5e39c179db01858e88f1690e3bb769d0d6e",
+      "bytes": 400598
+    }
+  }
+}

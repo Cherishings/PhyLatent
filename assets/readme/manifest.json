@@ -1,5 +1,5 @@
 {
-  "description": "Local SVG assets for the PhyLatent README. Success rates are paper-reported means; decorative geometry is not experimental data.",
+  "description": "Local homepage assets. Success rates are paper-reported means; animated geometry is decorative.",
   "files": {
     "cube_cover_en.svg": {
       "sha256": "1040e56748660246b477d2525be3a5c12bbc90b5fa9403ba4462b064c4d89c05",
@@ -17,6 +17,22 @@
       "sha256": "37ebda092241827ef713f59481646d058408f9ad6cb102744b8009b6f4a0ae88",
       "bytes": 2373
     },
+    "hero_motion_en.gif": {
+      "sha256": "2251bbd82507c80a4568ff4eb2cc1a93c2d5906c7a57c560b695173080b42813",
+      "bytes": 759485
+    },
+    "hero_motion_en_mobile.gif": {
+      "sha256": "0c52b36c1782de714489f1bab4c9d9bb0967e15390ed8744ed41825f47dc3153",
+      "bytes": 367003
+    },
+    "hero_motion_zh.gif": {
+      "sha256": "716353318b64456a36905d05ef56608d1c0c241586e72d77c918b45e6eddb4e1",
+      "bytes": 764596
+    },
+    "hero_motion_zh_mobile.gif": {
+      "sha256": "6aa16e6a76a6664fecea608be1a85d1d94d8a80a569080a208792a6cd4f12198",
+      "bytes": 365883
+    },
     "hero_zh.svg": {
       "sha256": "fd223533bc710a89b861fb2ab484df1255a5146bd1faf9090dbd40a0ffc45ef4",
       "bytes": 2383
@@ -26,52 +42,72 @@
       "bytes": 2369
     },
     "nav_code_en.svg": {
-      "sha256": "9b89f6a3348e40cacc6c449a0335cac82e7b3470c7191f71c5dac10205a94d7b",
-      "bytes": 568
+      "sha256": "e08330d975a9557d5e8c49b8cad43a6d4de2c020ef944e9312f01fcd05784c9c",
+      "bytes": 567
     },
     "nav_code_zh.svg": {
-      "sha256": "74db240b1db0e91b666fb975fbbccac15b244f5fc9a37e67c253e60806131095",
-      "bytes": 572
+      "sha256": "35f2667997246ed814db4c8082031f52eb73f3872163a1c85af8d4e3c4340669",
+      "bytes": 571
     },
     "nav_models_en.svg": {
-      "sha256": "640f1e250a7b81c52387c78e054b34ab2fbf4155ae95726273ae07d80d4b1064",
-      "bytes": 587
-    },
-    "nav_models_zh.svg": {
-      "sha256": "9d384981bb1e3f353c488aacd52d58340c6fba41a86fc9eee49ba4d422501e00",
-      "bytes": 587
-    },
-    "nav_paper_en.svg": {
-      "sha256": "686a1a1b7e1135285c8796deef2e26b00e99edda648514b69eb23cb17ec3a35c",
+      "sha256": "1e9f7ec825ac3b9b384cb11002671f090443f3e2ce96e7d7a3626a83091b7a77",
       "bytes": 586
     },
+    "nav_models_zh.svg": {
+      "sha256": "7e70cbb629e3b5b7a7473c4ea486383e3da15415260282820b1f7d1b2119f371",
+      "bytes": 586
+    },
+    "nav_paper_en.svg": {
+      "sha256": "50c6b87681c8d5ca2b5dbdf7a3f317845c520f8595c20d6ba1a8dddb4dca01b0",
+      "bytes": 585
+    },
     "nav_paper_zh.svg": {
-      "sha256": "eb1cf787c67b1780251c44466efa802066f03c67b00990902538490705c5bae8",
-      "bytes": 588
+      "sha256": "7eec46b8217adbb628bd79a4dd2a84af5ee02fa75c49f123d743b60296ff8cf8",
+      "bytes": 587
     },
     "nav_videos_en.svg": {
-      "sha256": "69bd5f7abd12c9e0ee884dcb20bb41d1eb01b425e86d7bb3e0d160cf96f5273a",
-      "bytes": 598
+      "sha256": "09aa311b9ea94d85ec6018b890933678f014004b8beb1e33a586243fd1a8eaaf",
+      "bytes": 597
     },
     "nav_videos_zh.svg": {
-      "sha256": "32cf68fa065744f8ec5528a2f5a33d4cb461540587108d84c9cb8a2e6d83b7a1",
-      "bytes": 598
+      "sha256": "f00c8539d240846ecc1a0fc70649d8a8c9e803656a454f1fce782d5668c57d24",
+      "bytes": 597
+    },
+    "section_demonstrations.svg": {
+      "sha256": "cdc6728243c25097a376aa85c581a5ff9c236bbe735d75480478f79512dd624c",
+      "bytes": 364
+    },
+    "section_diagnostics.svg": {
+      "sha256": "64b39a043fe63a98a71f29d446dfc5cbb0983dd8c6c5329cb0f3f983aa21e4f2",
+      "bytes": 356
+    },
+    "section_experiments.svg": {
+      "sha256": "03bbfcddfcc0306b2a1285ea7ca5cf140666511bc62da150d3a45515942c7e29",
+      "bytes": 344
+    },
+    "section_method.svg": {
+      "sha256": "3f66e1f3ed20d808cb2864bfe5772663eb93ec013de3ff9d53297ff409953d2e",
+      "bytes": 356
+    },
+    "section_quickstart.svg": {
+      "sha256": "592bbf4eb00ba76dfcd702fdccfde9401bd9d83f04ba91bbf5e38dfe135520ee",
+      "bytes": 365
     },
     "success_en.svg": {
-      "sha256": "05bcc68e7df289305db762dff0a3f18f75f2becaa76b480cd4e20cf03a8ef679",
-      "bytes": 4384
+      "sha256": "4740b60e40041c26aeffbacc355ffe76124fece5ba0176c1d9810ffbbacd3575",
+      "bytes": 4153
     },
     "success_en_mobile.svg": {
-      "sha256": "2ed23b1eabaf2b0ea9d43bcb6e9ced0bdc2d58cd6815e48ab1c96fc8b430d364",
-      "bytes": 4382
+      "sha256": "e75ea4b5603b491557dac7c8e49261ecf106b3babc837a7b364008b8b0cb8932",
+      "bytes": 4156
     },
     "success_zh.svg": {
-      "sha256": "3abac1c61b29f55e59962825787c9b705f7e05d43395e894e1312fde4087a9ea",
-      "bytes": 4396
+      "sha256": "2c36172a4f169bb0cf10a47f3077e0e5a2f818379e254c1ee81f5ec28afc0e84",
+      "bytes": 4165
     },
     "success_zh_mobile.svg": {
-      "sha256": "7cb88bd44c455fcb4b79abb14e460cd0fec5d420ec59d15980bf0fa5f0773457",
-      "bytes": 4394
+      "sha256": "89ac6a9d0964ba2aefecda3fc7279189e57ee631880290c357a23418c05b5b1a",
+      "bytes": 4168
     }
   }
 }
