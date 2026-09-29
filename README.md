@@ -8,36 +8,6 @@ and latent denoising. This repository provides the **base method, from-scratch
 training and ablations, four inference checkpoints, planning evaluation, and
 final collapse diagnostics** for Cube, TwoRooms, Reacher and PushT.
 
-## Watch PhyLatent in action
-
-[![Four complete task demonstrations](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4)
-
-[Watch the four-task overview](assets/videos/four_tasks_overview.mp4), or open a full individual rollout:
-
-- [Cube — 48 control steps](assets/videos/cube_full_en.mp4)
-- [TwoRooms — 45 control steps](assets/videos/tworoom_full_en.mp4)
-- [Reacher — 25 control steps](assets/videos/reacher_full_en.mp4)
-- [PushT — 50 control steps](assets/videos/pusht_full_en.mp4)
-
-These are selected complete successful executions using the released weights.
-Every recorded step from the stated start is retained. Each video labels its
-playback speed and shows the target throughout. The long-demo budget is 400
-steps; these examples are separate from the paper's 50-step benchmark.
-Reacher naturally finishes quickly, so its presentation uses labelled slow playback.
-See [video settings and provenance](docs/videos.md).
-
-### Cube: understanding the failure and the paired execution
-
-[![Cube diagnostic case studies](assets/previews/cube_cases_cover.png)](assets/videos/cube_three_cases_en.mp4)
-
-[Watch the three-chapter Cube video](assets/videos/cube_three_cases_en.mp4).
-It combines decision scores, real simulator endpoints, complete LeWM failure
-rollouts and matched autonomous PhyLatent executions.
-
-The distinguishability diagnosis and planning comparison use different cases.
-See [video settings and provenance](docs/videos.md) for the source recordings
-and diagnostic scope.
-
 ## Method overview
 
 ![PhyLatent architecture — Figure 3](assets/figures/architecture.png)
@@ -63,6 +33,32 @@ The implementation follows this split: [backbone](src/phylatent/models/jepa.py),
 [loss functions](src/phylatent/losses.py),
 [training objectives](src/phylatent/training.py), and
 [planning](src/phylatent/evaluation/planning.py).
+
+## Watch PhyLatent in action
+
+[![Four complete task demonstrations](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4)
+
+[Watch the four-task overview](assets/videos/four_tasks_overview.mp4), or open a full individual rollout:
+
+- [Cube](assets/videos/cube_full_en.mp4)
+- [TwoRooms](assets/videos/tworoom_full_en.mp4)
+- [Reacher](assets/videos/reacher_full_en.mp4)
+- [PushT](assets/videos/pusht_full_en.mp4)
+
+Complete successful rollouts with the target visible throughout.
+See [video settings and provenance](docs/videos.md) for recording details.
+
+### Cube: understanding the failure and the paired execution
+
+[![Cube diagnostic case studies](assets/previews/cube_cases_cover.png)](assets/videos/cube_three_cases_en.mp4)
+
+[Watch the three-chapter Cube video](assets/videos/cube_three_cases_en.mp4).
+It combines decision scores, real simulator endpoints, complete LeWM failure
+rollouts and matched autonomous PhyLatent executions.
+
+The distinguishability diagnosis and planning comparison use different cases.
+See [video settings and provenance](docs/videos.md) for the source recordings
+and diagnostic scope.
 
 ## What do the collapse diagnostics detect?
 

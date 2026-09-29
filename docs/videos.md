@@ -96,3 +96,9 @@ Edited chapters are 30 fps with 0.4-second smooth cross-dissolves between held b
 Case IDs, tutorial prompts and standalone closing cards are omitted. Each chapter ends with a two-second hold on the paired execution result. Original opening cards, scores and full recorded trajectories are retained.
 
 视频已删除案例编号、引导口号和独立总结卡片，每章直接停在配对执行结果上两秒。开场、评分与完整记录轨迹保留。
+
+## Homepage media / 主页素材
+
+The four-task overview and GIF omit the title banner and step counters; timing and recorded frames are unchanged. Cube cover images now use the bilingual final comparison frames from showcase_v11. The Cube films and individual task films remain byte-identical to showcase_v11.
+
+四任务合集与动图已删除顶部标题栏和步数计数，时间线和录制帧不变。Cube 封面换为 showcase_v11 的中英文末尾对照画面；Cube 专题与四任务单片文件保持不变。

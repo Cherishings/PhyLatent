@@ -111,8 +111,8 @@
       "frames": 144,
       "fps": 10.0,
       "seconds": 14.4,
-      "bytes": 241329,
-      "sha256": "7dccb888d6d017c10c9170ca0e1c05fb8c5cb2f6a75c641146e6bac6819ec99c"
+      "bytes": 275948,
+      "sha256": "880703089c178f54b24603892af2265c7124eb3d78d015435aea759c7e1cd0f5"
     },
     "cube_three_cases_zh.mp4": {
       "file": "edited/cube_three_cases_zh.mp4",
@@ -432,5 +432,30 @@
     "final_hold_seconds": 2,
     "paired_segment_label": "Planning comparison",
     "evidence_provenance": "Retained in documentation and source metadata"
+  },
+  "homepage_refresh": {
+    "baseline": "showcase_v11",
+    "cube_films_unchanged": true,
+    "individual_task_films_unchanged": true,
+    "overview_header_removed": true,
+    "overview_step_counters_removed": true,
+    "frames": 144,
+    "fps": 10.0,
+    "all_source_frames_retained": true,
+    "cube_cover_source": "showcase_v11/stills/cube_counterfactual_result_{en,zh}.png",
+    "source_trajectory_sha256": {
+      "cube": "4953ea9cb8fb25a2e331c3a629f441088d151916895296a3fe2fa3bcfeb2442d",
+      "tworoom": "c61fe34b3b0a64ea7815711c19a0f25409a5440b970e1d715078930fd027aba1",
+      "reacher": "91d0dcdf0a6dc1ef4cc90a107915a555db3d4367c2332654d63e37d778326e6b",
+      "pusht": "66ff263753a821e998ecb8e50ce87508153a6c6558a31b1a89445912e67ca3e4"
+    },
+    "preview_sha256": {
+      "cube_cases_cover.png": "ad0803bfc988a2aae0e4ff20d2cc6c71237d42f7b42fc805382f6434b9014c0b",
+      "cube_cases_cover_zh.png": "af73e32e41f1569574a8a83d439194f3756e9ae017d46286f00ab81d0a816046",
+      "four_tasks_final.png": "b117ba2fd87ca8d29087cda143146f8ca21c76350e5026f0cb003d57e7033b3e",
+      "four_tasks_cover.jpg": "3b31cfab3d2ff17aa75ae1070a79fbfa3f734339d17d47bc19547cb041fe6727",
+      "four_tasks_preview.gif": "bc4c2f13ca8032268733203476837d2a49c9dfaf197e58d6244c99a3053eeeec"
+    },
+    "script_sha256": "8e73e71e74cc23fcbdcf81223c8e6527ab9a6b667fb9c3f941c2ba5d708e80ad"
   }
 }
