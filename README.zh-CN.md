@@ -63,7 +63,9 @@ PhyLatent 的各项设计都围绕改善状态空间展开，进而提高规划�
 
 ### 诊断可视化
 
-[![Cube 坍缩诊断](assets/readme/cube_cover_zh.svg)](assets/videos/cube_three_cases_zh.mp4?raw=true)
+<p align="center">
+  <a href="assets/videos/cube_three_cases_zh.mp4?raw=true"><img src="assets/readme/cube_cover_zh.svg" alt="Cube 坍缩诊断" width="780"></a>
+</p>
 
 [下载 Cube 坍缩诊断视频 MP4](assets/videos/cube_three_cases_zh.mp4?raw=true)。
 视频展示三类诊断错误，并呈现 LeWM 与 PhyLatent 的并排执行过程。
@@ -76,7 +78,9 @@ PhyLatent 的各项设计都围绕改善状态空间展开，进而提高规划�
 保持相同的模型主干与规划器，PhyLatent 相对 LeWM 将四任务平均成功率从 **79.92% 提高到 86.54%**。
 Cube 和 TwoRooms 的提升最明显，Reacher 基本持平。
 
-[![表 1：四任务规划成功率](assets/results/planning_success.png)](https://arxiv.org/pdf/2608.05720#page=6)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720#page=6"><img src="assets/results/planning_success.png" alt="表 1：四任务规划成功率" width="780"></a>
+</p>
 
 <sub>Table 1 · 成功率（%），报告六个评估随机种子的均值 ± 标准差。PLDM 与 DINO-WM 为已有文献报告的基线。</sub>
 
@@ -85,7 +89,9 @@ Cube 和 TwoRooms 的提升最明显，Reacher 基本持平。
 我们检查外观变化、状态编码和未来预测是否破坏物理关系。
 四个任务的坍缩率均有所降低，其中 Reacher 的反事实指标变化较小。
 
-[![表 2：不变性、可区分性与反事实动力学坍缩率](assets/results/collapse_rates.png)](https://arxiv.org/pdf/2608.05720#page=7)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720#page=7"><img src="assets/results/collapse_rates.png" alt="表 2：不变性、可区分性与反事实动力学坍缩率" width="780"></a>
+</p>
 
 <sub>Table 2 · 数值越低越好。Inv.：不变性；Dist.：可区分性；CF-H5：与规划一致的五个动作块时域下的反事实动力学。</sub>
 
@@ -97,26 +103,38 @@ Cube 和 TwoRooms 的提升最明显，Reacher 基本持平。
 在 Cube 中，PhyLatent 更能应对背景与纹理变化。不同任务的表现存在差异，
 大幅外观变化对 TwoRooms 和 Reacher 仍然有挑战。
 
-[![图 4：外观变化下的规划成功率](assets/results/appearance_robustness.png)](https://arxiv.org/pdf/2608.05720#page=7)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720#page=7"><img src="assets/results/appearance_robustness.png" alt="图 4：外观变化下的规划成功率" width="780"></a>
+</p>
+
+<sub>成功率（%）；误差条表示评估随机种子间的标准差。</sub>
 
 ### 更大目标间隔下的规划
 
 论文分别测试了时间间隔与真实物理位移。在 Cube 物理位移最大的分组中，
 成功率从 **26.67% 提高到 60.00%**。
 
-[![图 5：更大目标间隔下的规划表现](assets/results/goal_separation.png)](https://arxiv.org/pdf/2608.05720#page=9)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720#page=9"><img src="assets/results/goal_separation.png" alt="图 5：更大目标间隔下的规划表现" width="780"></a>
+</p>
 
 ### 监督信息与损失权重
 
-[![表 3：物理状态监督与辅助损失权重对照](assets/results/supervision_controls.png)](https://arxiv.org/pdf/2608.05720#page=8)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720#page=8"><img src="assets/results/supervision_controls.png" alt="表 3：物理状态监督与辅助损失权重对照" width="780"></a>
+</p>
+
+<sub>成功率（%）；权重对照报告均值 ± 评估随机种子间标准差，坍缩率越低越好。</sub>
 
 </details>
 
-以上表格与实验图均直接取自[论文](https://arxiv.org/pdf/2608.05720)。
+完整实验设置与结果见[论文](https://arxiv.org/pdf/2608.05720)。
 
 ## <a id="demonstrations"></a><img src="assets/readme/section_demonstrations.svg" width="28" alt=""> 四任务完整演示
 
-[![四任务执行预览](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4?raw=true)
+<p align="center">
+  <a href="assets/videos/four_tasks_overview.mp4?raw=true"><img src="assets/previews/four_tasks_preview.gif" alt="四任务执行预览" width="780"></a>
+</p>
 
 [下载四任务合集 MP4](assets/videos/four_tasks_overview.mp4?raw=true)，或下载各任务的完整视频：
 

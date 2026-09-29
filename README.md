@@ -68,7 +68,9 @@ results support improving latent structure as a way to strengthen JEPA world mod
 
 ### Visualizing the diagnostics
 
-[![Cube collapse diagnostics](assets/readme/cube_cover_en.svg)](assets/videos/cube_three_cases_en.mp4?raw=true)
+<p align="center">
+  <a href="assets/videos/cube_three_cases_en.mp4?raw=true"><img src="assets/readme/cube_cover_en.svg" alt="Cube collapse diagnostics" width="780"></a>
+</p>
 
 [Download the Cube diagnostics video (MP4)](assets/videos/cube_three_cases_en.mp4?raw=true).
 The video illustrates the three diagnostic failures and shows LeWM / PhyLatent execution side by side.
@@ -81,7 +83,9 @@ More observation examples are in the [visual guide](docs/visualizations.md).
 With the same backbone and planner, PhyLatent raises average success over LeWM from **79.92% to 86.54%**.
 The largest gains are on Cube and TwoRooms; Reacher is effectively tied.
 
-[![Table 1. Planning success across four tasks](assets/results/planning_success.png)](https://arxiv.org/pdf/2608.05720#page=6)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720#page=6"><img src="assets/results/planning_success.png" alt="Table 1. Planning success across four tasks" width="780"></a>
+</p>
 
 <sub>Table 1 · Success (%), mean ± standard deviation across six evaluation seeds. PLDM and DINO-WM are previously reported baselines.</sub>
 
@@ -90,7 +94,9 @@ The largest gains are on Cube and TwoRooms; Reacher is effectively tied.
 We measure whether physical relationships survive appearance changes, state encoding and future prediction.
 Collapse rates decrease across the four tasks; the counterfactual change on Reacher is small.
 
-[![Table 2. Invariance, distinguishability and counterfactual collapse rates](assets/results/collapse_rates.png)](https://arxiv.org/pdf/2608.05720#page=7)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720#page=7"><img src="assets/results/collapse_rates.png" alt="Table 2. Invariance, distinguishability and counterfactual collapse rates" width="780"></a>
+</p>
 
 <sub>Table 2 · Lower is better. Inv.: invariance; Dist.: distinguishability; CF-H5: counterfactual dynamics at the planning horizon of five blocks.</sub>
 
@@ -102,26 +108,38 @@ Collapse rates decrease across the four tasks; the counterfactual change on Reac
 On Cube, PhyLatent handles background and texture changes better. The response varies by task;
 large appearance shifts remain difficult for TwoRooms and Reacher.
 
-[![Figure 4. Success under visual appearance shifts](assets/results/appearance_robustness.png)](https://arxiv.org/pdf/2608.05720#page=7)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720#page=7"><img src="assets/results/appearance_robustness.png" alt="Figure 4. Success under visual appearance shifts" width="780"></a>
+</p>
+
+<sub>Success (%); error bars show the across-seed standard deviation.</sub>
 
 ### Planning over larger goal separations
 
 The paper tests temporal goal offsets and physical displacement. In Cube's largest displacement group,
 success rises from **26.67% to 60.00%**.
 
-[![Figure 5. Planning under increasing goal separation](assets/results/goal_separation.png)](https://arxiv.org/pdf/2608.05720#page=9)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720#page=9"><img src="assets/results/goal_separation.png" alt="Figure 5. Planning under increasing goal separation" width="780"></a>
+</p>
 
 ### Supervision and objective weights
 
-[![Table 3. Privileged-state supervision and auxiliary-weight controls](assets/results/supervision_controls.png)](https://arxiv.org/pdf/2608.05720#page=8)
+<p align="center">
+  <a href="https://arxiv.org/pdf/2608.05720#page=8"><img src="assets/results/supervision_controls.png" alt="Table 3. Privileged-state supervision and auxiliary-weight controls" width="780"></a>
+</p>
+
+<sub>Success (%), with mean ± across-seed standard deviation for the weight comparison. Lower collapse rates are better.</sub>
 
 </details>
 
-All tables and plots above are taken directly from the [paper](https://arxiv.org/pdf/2608.05720).
+Full experimental settings and results are in the [paper](https://arxiv.org/pdf/2608.05720).
 
 ## <a id="demonstrations"></a><img src="assets/readme/section_demonstrations.svg" width="28" alt=""> Task demonstrations
 
-[![Four complete task demonstrations](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4?raw=true)
+<p align="center">
+  <a href="assets/videos/four_tasks_overview.mp4?raw=true"><img src="assets/previews/four_tasks_preview.gif" alt="Four complete task demonstrations" width="780"></a>
+</p>
 
 [Download the four-task overview (MP4)](assets/videos/four_tasks_overview.mp4?raw=true), or download an individual rollout:
 
