@@ -1,0 +1,27 @@
+{
+  "initial_contact": 0.0,
+  "peak_block_center_m": 0.06227667304854136,
+  "initial_block_center_m": 0.02047900604446342,
+  "first_environment_success_step": 16,
+  "recording_steps": 48,
+  "final_contact": [
+    [
+      0.036051851141173936
+    ],
+    [
+      0.0
+    ],
+    [
+      0.049119683911803685
+    ]
+  ],
+  "final_height_m": [
+    0.020103888780837072,
+    0.01990761876625246,
+    0.019968876722553854
+  ],
+  "action_prefix_max_abs_error": 0.0,
+  "qpos_prefix_max_abs_error": 0.0,
+  "pixel_prefix_max_abs_error": 1,
+  "note": "Original actions and simulated states match exactly through first success. Maximum 1-level pixel difference is render quantization. No action replacement; stop condition extended only."
+}

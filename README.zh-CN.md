@@ -6,6 +6,67 @@ PhyLatent 通过物理状态监督、未来关系对齐、静态视觉不变性�
 latent 去噪学习潜在世界模型。本目录提供 **基础方法、从头训练、消融、四任务推理
 权重、规划评估和最终坍缩诊断**，覆盖 Cube、TwoRooms、Reacher、PushT。
 
+## 四任务完整演示
+
+[![四任务执行预览](assets/previews/four_tasks_preview.gif)](assets/videos/four_tasks_overview.mp4)
+
+[观看四任务合集](assets/videos/four_tasks_overview.mp4)，或分别观看完整过程：
+
+- [Cube：48 个控制步](assets/videos/cube_full_zh.mp4)
+- [TwoRooms：45 个控制步](assets/videos/tworoom_full_zh.mp4)
+- [Reacher：25 个控制步](assets/videos/reacher_full_zh.mp4)
+- [PushT：50 个控制步](assets/videos/pusht_full_zh.mp4)
+
+以上是使用发布权重选取的完整成功案例，保留从标注起点开始的全部控制步。
+画面全程保留目标，并注明播放速度。长程演示预算为 400 步，与论文原 50 步
+评估协议分开。Reacher 本身较快完成，展示版采用明确标注的慢放。
+详细设置与来源见[视频说明](docs/videos.md)。
+
+### Cube：看清错误决策与执行对照
+
+[![Cube 三章案例专题](assets/previews/cube_cases_cover.png)](assets/videos/cube_three_cases_zh.mp4)
+
+[观看 Cube 三章专题](assets/videos/cube_three_cases_zh.mp4)。
+视频结合评分、动作分支的真实终点、LeWM 完整失败回放，以及同条件下 PhyLatent 的自主执行。
+
+可区分性的诊断与规划对照来自不同案例，来源与诊断范围见[视频说明](docs/videos.md)。
+
+## 方法结构
+
+![PhyLatent 方法结构：论文 Figure 3](assets/figures/architecture.png)
+
+*Figure 3：PhyLatent 整体结构。[查看矢量图](assets/figures/architecture.svg)。*
+
+观测编码器先把历史图像编码成潜在状态；动作编码器与共享预测器再根据候选动作，
+预测未来的潜在状态。训练时，五个辅助目标组成三组约束：
+
+- **物理不变性 — SVIP：** 外观扰动前后的表示保持一致。
+- **物理可区分性 — PSG + FRA：** 用物理状态监督约束表示，并对齐预测未来与观测未来的关系，包括动作条件下的关系。
+- **反事实动力学 — CASP + LD：** 使不同动作的未来预测有所区分，并通过条件 latent 去噪提供辅助学习目标。
+
+这五个目标与潜在预测损失、SIGReg 正则共同训练。推理时，编码器与动作条件预测器
+用于 CEM 模型预测控制：比较候选动作序列的预测与目标表示，执行一段动作，
+再根据新观测重新规划。规划不需要训练时使用的辅助头。
+
+代码对应为：[模型主干](src/phylatent/models/jepa.py)、
+[辅助头](src/phylatent/models/heads.py)、[损失函数](src/phylatent/losses.py)、
+[训练目标组合](src/phylatent/training.py)和[规划评估](src/phylatent/evaluation/planning.py)。
+
+## 三类坍缩分别在辨识什么？
+
+![物理不变性、物理可区分性与反事实动力学的三类坍缩诊断](assets/figures/collapse_diagnostics.png)
+
+*图中为 Cube 上 LeWM 参考模型的实测诊断，用来说明 PhyLatent 要解决的问题。
+红点表示诊断失败，平面表示排序判别边界；这张图不是 PhyLatent 改进前后的对比。*
+
+- **不变性坍缩：** 只改变外观，原本正确的远近排序却反转了。
+- **可区分性坍缩：** 物理上更远的状态，在潜在空间里却不比近状态更远。
+- **反事实动力学坍缩：** 不同动作分支的实际未来经编码后存在明确排序，预测未来却未能保持这一排序。
+
+图采用 INV v2、Distinguishability v2 和 CF ordering-v3（horizon 5）。
+每个面板均匀抽取 2,500 个合格比较用于展示；不能用画面中的点数估算总体失败率。
+真实观测案例、图片来源和解读边界见[可视化说明](docs/visualizations.zh-CN.md)。
+
 ## 安装
 
 使用 Linux 和 Python 3.10 及以上版本；所附完整训练和规划命令需要 CUDA。
@@ -92,6 +153,7 @@ python scripts/diagnose.py --task cube --model-dir checkpoints/cube \
 ## 目录结构
 
 ```text
+assets/figures/       论文结构图与实测诊断图
 configs/train/       四任务基础配方与组件/分组消融
 src/phylatent/       模型、辅助损失、预处理和训练
   evaluation/        闭环 CEM 规划评估
